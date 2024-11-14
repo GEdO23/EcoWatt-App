@@ -49,6 +49,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation(libs.gson)
+
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    implementation(libs.okhttp)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
