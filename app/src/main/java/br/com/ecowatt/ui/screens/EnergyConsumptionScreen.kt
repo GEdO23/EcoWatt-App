@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.ecowatt.models.Device
+import br.com.ecowatt.sampledata.deviceSampleData
 
 @Composable
 fun EnergyConsumptionScreen(
@@ -33,7 +34,11 @@ fun EnergyConsumptionScreen(
 @Composable
 private fun EnergyConsumptionScreenPreview() {
     EnergyConsumptionScreen(
-        devices = listOf(),
+        devices = listOf(
+            deviceSampleData,
+            deviceSampleData,
+            deviceSampleData
+        ),
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
