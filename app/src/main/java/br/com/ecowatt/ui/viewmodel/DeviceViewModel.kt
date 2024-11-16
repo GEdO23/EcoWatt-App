@@ -11,14 +11,14 @@ import kotlinx.coroutines.launch
 class DeviceViewModel : ViewModel() {
     private val repo = DeviceRepository()
     val devices = mutableStateListOf<Device>()
-    
+
     init {
         loadDevices()
     }
 
     fun loadDevices() {
         viewModelScope.launch {
-            repo.getDevices(
+            repo.readDevices(
                 onRequestFailure = {
                     Log.e("ECOWATT", "${it.message}")
                 },
@@ -43,6 +43,24 @@ class DeviceViewModel : ViewModel() {
                 },
                 onRequestSuccess = {
                     Log.d("ECOWATT", "Device created!")
+                }
+            )
+        }
+    }
+    
+    fun updateDevice(
+        id: String,
+        device: Device
+    ) {
+        viewModelScope.launch {
+            repo.updateDevice(
+                id = id,
+                device = device,
+                onRequestFailure = {
+                    Log.e("ECOWATT", "${it.message}")
+                },
+                onRequestSuccess = {
+                    Log.d("ECOWATT", "Device updated!")
                 }
             )
         }
