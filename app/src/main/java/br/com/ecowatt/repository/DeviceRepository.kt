@@ -107,4 +107,28 @@ class DeviceRepository {
         httpClient.newCall(request)
             .enqueue(response)
     }
+
+    fun deleteDevice(
+        id: String,
+        onRequestFailure: (e: IOException) -> Unit,
+        onRequestSuccess: () -> Unit
+    ) {
+        val request = Request.Builder()
+            .url("$url/devices/$id.json")
+            .delete()
+            .build()
+
+        val response = object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                onRequestFailure(e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                onRequestSuccess()
+            }
+        }
+
+        httpClient.newCall(request)
+            .enqueue(response)
+    }
 }
