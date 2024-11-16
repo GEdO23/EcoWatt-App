@@ -17,7 +17,7 @@ class DeviceRepository {
     private val gson = Gson()
     private val httpClient = OkHttpClient()
 
-    fun getDevices(
+    fun readDevices(
         onRequestFailure: (e: IOException) -> Unit,
         onRequestSuccess: (devices: HashMap<String, Device?>?) -> Unit
     ) {
@@ -72,6 +72,34 @@ class DeviceRepository {
                 if (localBody != "" && localBody != "null") {
                     onRequestSuccess()
                 }
+            }
+        }
+
+        httpClient.newCall(request)
+            .enqueue(response)
+    }
+    
+    fun updateDevice(
+        id: String,
+        device: Device,
+        onRequestFailure: (e: IOException) -> Unit,
+        onRequestSuccess: () -> Unit
+    ) {
+        val json = gson.toJson(device)
+        val body = json.toRequestBody("application/json".toMediaType())
+
+        val request = Request.Builder()
+            .url("$url/devices/$id.json")
+            .put(body)
+            .build()
+
+        val response = object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                onRequestFailure(e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                onRequestSuccess()
             }
         }
 
