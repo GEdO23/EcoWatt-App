@@ -65,6 +65,7 @@ class DeviceViewModel : ViewModel() {
                 },
                 onRequestSuccess = {
                     Log.d("ECOWATT", "Device updated!")
+                    this@DeviceViewModel.loadDevices()
                 }
             )
         }
