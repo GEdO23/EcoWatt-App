@@ -41,13 +41,17 @@ class DeviceViewModel : ViewModel() {
                 onRequestFailure = {
                     Log.e("ECOWATT", "${it.message}")
                 },
-                onRequestSuccess = {
-                    Log.d("ECOWATT", "Device created!")
+                onRequestSuccess = { deviceId ->
+                    Log.d("ECOWATT", "Device created! Id: $deviceId")
+                    deviceId.let {
+                        updateDevice(it, device.copy(id = it))
+                        this@DeviceViewModel.loadDevices()
+                    }
                 }
             )
         }
     }
-    
+
     fun updateDevice(
         id: String,
         device: Device

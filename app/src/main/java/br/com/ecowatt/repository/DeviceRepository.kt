@@ -51,7 +51,7 @@ class DeviceRepository {
     fun createDevice(
         device: Device,
         onRequestFailure: (e: IOException) -> Unit,
-        onRequestSuccess: () -> Unit
+        onRequestSuccess: (id: String) -> Unit
     ) {
         val json = gson.toJson(device)
         val body = json.toRequestBody("application/json".toMediaType())
@@ -70,7 +70,8 @@ class DeviceRepository {
                 val localBody = response.body?.string() ?: ""
 
                 if (localBody != "" && localBody != "null") {
-                    onRequestSuccess()
+                    val id = gson.fromJson(localBody, HashMap::class.java)["name"] as String
+                    onRequestSuccess(id)
                 }
             }
         }
@@ -78,7 +79,7 @@ class DeviceRepository {
         httpClient.newCall(request)
             .enqueue(response)
     }
-    
+
     fun updateDevice(
         id: String,
         device: Device,
