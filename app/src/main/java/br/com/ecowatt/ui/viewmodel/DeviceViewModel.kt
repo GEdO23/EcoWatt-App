@@ -69,4 +69,21 @@ class DeviceViewModel : ViewModel() {
             )
         }
     }
+
+    fun deleteDevice(
+        id: String
+    ) {
+        viewModelScope.launch {
+            repo.deleteDevice(
+                id = id,
+                onRequestFailure = {
+                    Log.e("ECOWATT", "${it.message}")
+                },
+                onRequestSuccess = {
+                    Log.d("ECOWATT", "Device deleted!")
+                    this@DeviceViewModel.loadDevices()
+                }
+            )
+        }
+    }
 }
