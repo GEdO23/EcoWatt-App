@@ -31,4 +31,20 @@ class DeviceViewModel : ViewModel() {
             )
         }
     }
+
+    fun newDevice(
+        device: Device
+    ) {
+        viewModelScope.launch {
+            repo.createDevice(
+                device = device,
+                onRequestFailure = {
+                    Log.e("ECOWATT", "${it.message}")
+                },
+                onRequestSuccess = {
+                    Log.d("ECOWATT", "Device created!")
+                }
+            )
+        }
+    }
 }
