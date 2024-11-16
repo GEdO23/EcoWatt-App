@@ -9,7 +9,14 @@ import br.com.ecowatt.repository.DeviceRepository
 import kotlinx.coroutines.launch
 
 class DeviceViewModel : ViewModel() {
-    private val repo = DeviceRepository()
+    private val rtdbUrl = "https://ecowatt-database-default-rtdb.firebaseio.com"
+    private val tableName = "devices"
+    
+    private val repo = DeviceRepository(
+        database = rtdbUrl,
+        table = tableName
+    )
+    
     val devices = mutableStateListOf<Device>()
 
     init {
@@ -18,7 +25,7 @@ class DeviceViewModel : ViewModel() {
 
     fun loadDevices() {
         viewModelScope.launch {
-            repo.readDevices(
+            repo.read(
                 onRequestFailure = {
                     Log.e("ECOWATT", "${it.message}")
                 },
@@ -36,8 +43,8 @@ class DeviceViewModel : ViewModel() {
         device: Device
     ) {
         viewModelScope.launch {
-            repo.createDevice(
-                device = device,
+            repo.create(
+                model = device,
                 onRequestFailure = {
                     Log.e("ECOWATT", "${it.message}")
                 },
@@ -57,9 +64,9 @@ class DeviceViewModel : ViewModel() {
         device: Device
     ) {
         viewModelScope.launch {
-            repo.updateDevice(
+            repo.update(
                 id = id,
-                device = device,
+                model = device,
                 onRequestFailure = {
                     Log.e("ECOWATT", "${it.message}")
                 },
@@ -75,7 +82,7 @@ class DeviceViewModel : ViewModel() {
         id: String
     ) {
         viewModelScope.launch {
-            repo.deleteDevice(
+            repo.delete(
                 id = id,
                 onRequestFailure = {
                     Log.e("ECOWATT", "${it.message}")
