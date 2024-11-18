@@ -17,12 +17,14 @@ import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.Neutral1000
 import br.com.ecowatt.ui.theme.Red400
 
-private fun getBackgroundColor(
-    isConsumptionHigh: Boolean
-): Color {
-    return if (isConsumptionHigh) Red400 else Azure500
-}
-
+/**
+ * Component that displays an icon representing the consumption level.
+ *
+ * @param size the size of the icon, default is medium.
+ * @param isConsumptionHigh indicates if the consumption is high, default is false.
+ * @see IconSize
+ * @see ConsumptionReportIcon
+ */
 @Composable
 fun ConsumptionLevelIcon(
     size: IconSize = IconSize.MD,
@@ -30,7 +32,7 @@ fun ConsumptionLevelIcon(
 ) {
     Box(
         modifier = Modifier
-            .size(size.boxSize)
+            .size(size.containerSize)
             .background(
                 color = getBackgroundColor(isConsumptionHigh),
                 shape = RoundedCornerShape(100)
@@ -47,6 +49,14 @@ fun ConsumptionLevelIcon(
     }
 }
 
+/**
+ * Component that displays an icon representing the consumption report.
+ *
+ * @param size the size of the icon, default is medium.
+ * @param isConsumptionHigh indicates if the consumption is high, default is false.
+ * @see IconSize
+ * @see ConsumptionLevelIcon
+ */
 @Composable
 fun ConsumptionReportIcon(
     size: IconSize = IconSize.MD,
@@ -54,7 +64,7 @@ fun ConsumptionReportIcon(
 ) {
     Box(
         modifier = Modifier
-            .size(size.boxSize)
+            .size(size.containerSize)
             .background(
                 color = getBackgroundColor(isConsumptionHigh),
                 shape = RoundedCornerShape(100)
@@ -69,6 +79,20 @@ fun ConsumptionReportIcon(
                 .align(Alignment.Center)
         )
     }
+}
+
+/**
+ * Function that gets the background color of the [ConsumptionLevelIcon].
+ * 
+ * The background color is based on the consumption level.
+ *
+ * @param isConsumptionHigh indicates if the consumption is high.
+ * @return [Color] of the background color to be used.
+ */
+private fun getBackgroundColor(
+    isConsumptionHigh: Boolean
+): Color {
+    return if (isConsumptionHigh) Red400 else Azure500
 }
 
 @Preview
