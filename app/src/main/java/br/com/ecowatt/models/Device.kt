@@ -19,15 +19,15 @@ data class Device(
     val location: String,
     val type: String,
     val consumptionLimit: BigDecimal,
-    val consumptions: List<Consumption> = emptyList(),
-    val alerts: List<Alert> = emptyList()
+    val consumptions: List<Consumption>? = emptyList(),
+    val alerts: List<Alert>? = emptyList()
 ) {
     fun getCurrentConsumptionLevel(): BigDecimal {
-        return this.consumptions.firstOrNull()?.consumption ?: BigDecimal.ZERO
+        return consumptions?.firstOrNull()?.consumption ?: BigDecimal.ZERO
     }
 
     fun isConsumptionLevelHigh(): Boolean {
-        return this.getCurrentConsumptionLevel() >= this.consumptionLimit
+        return getCurrentConsumptionLevel() >= consumptionLimit
     }
 }
 

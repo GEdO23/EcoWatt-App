@@ -47,9 +47,7 @@ internal fun EnergyConsumptionListItem(
             Text(device.name)
         },
         supportingContent = {
-            val currentConsumption =
-                device.consumptions.firstOrNull()?.consumption ?: "0"
-            Text("$currentConsumption watts/minute")
+            Text("${device.getCurrentConsumptionLevel()} watts/minute")
         },
         trailingContent = {
             IconButton(onClick = onDeleteDevice) {
