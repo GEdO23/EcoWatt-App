@@ -5,7 +5,7 @@ import br.com.ecowatt.models.Device
 import java.math.BigDecimal
 import java.time.LocalDateTime
 
-val deviceSampleData = Device(
+val lowConsumptionLevelDeviceSampleData = Device(
     id = "-123",
     name = "Eletric shower",
     type = "Household appliance",
@@ -13,35 +13,28 @@ val deviceSampleData = Device(
     consumptionLimit = BigDecimal("356"),
     consumptions = listOf(
         Consumption(
-            id = "-5",
+            id = "-abc",
             deviceId = "-123",
-            consumption = BigDecimal("124"),
+            consumption = BigDecimal("200"),
             dateTime = LocalDateTime.now()
-        ),
+        )
+    ),
+    alerts = emptyList()
+)
+
+val highConsumptionLevelDeviceSampleData = Device(
+    id = "-123",
+    name = "Eletric shower",
+    type = "Household appliance",
+    location = "Bathroom",
+    consumptionLimit = BigDecimal("356"),
+    consumptions = listOf(
         Consumption(
-            id = "-4",
+            id = "-abc",
             deviceId = "-123",
-            consumption = BigDecimal("356"),
-            dateTime = LocalDateTime.now().minusMinutes(1)
-        ),
-        Consumption(
-            id = "-3",
-            deviceId = "-123",
-            consumption = BigDecimal("128"),
-            dateTime = LocalDateTime.now().minusMinutes(2)
-        ),
-        Consumption(
-            id = "-2",
-            deviceId = "-123",
-            consumption = BigDecimal("32"),
-            dateTime = LocalDateTime.now().minusMinutes(3)
-        ),
-        Consumption(
-            id = "-1",
-            deviceId = "-123",
-            consumption = BigDecimal("0"),
-            dateTime = LocalDateTime.now().minusMinutes(4)
-        ),
+            consumption = BigDecimal("400"),
+            dateTime = LocalDateTime.now()
+        )
     ),
     alerts = emptyList()
 )
