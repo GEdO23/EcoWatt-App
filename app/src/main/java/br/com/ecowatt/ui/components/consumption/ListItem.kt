@@ -20,6 +20,16 @@ import br.com.ecowatt.ui.theme.Neutral1000
 import br.com.ecowatt.ui.theme.Red100
 import br.com.ecowatt.ui.theme.Red400
 
+/**
+ * Component to display an energy consumption list item.
+ *
+ * @param device the device whose energy consumption is being displayed.
+ * @param isConsumptionHigh indicates if the device's energy consumption is high.
+ * @param onClick called when this list item is clicked.
+ * @param onDeleteDevice called when the delete button of this list item is clicked.
+ * @see Device
+ * @see EnergyConsumptionList
+ */
 @Composable
 internal fun EnergyConsumptionListItem(
     device: Device,
@@ -52,6 +62,15 @@ internal fun EnergyConsumptionListItem(
     )
 }
 
+/**
+ * Function to get the colors for the list item based on consumption level.
+ *
+ * @param isConsumptionHigh indicates if the device's energy consumption is high.
+ * @return [ListItemColors] the colors to be used for the list item.
+ * @see Device
+ * @see EnergyConsumptionListItem
+ * @see ListItemColors
+ */
 private fun getListItemColors(
     isConsumptionHigh: Boolean
 ): ListItemColors {
