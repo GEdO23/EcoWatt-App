@@ -15,10 +15,10 @@ import java.math.BigDecimal
  */
 data class Device(
     val id: String = "",
-    val name: String = "",
-    val location: String = "",
-    val type: String = "",
-    val consumptionLimit: BigDecimal = BigDecimal.ZERO,
+    val name: String,
+    val location: String,
+    val type: String,
+    val consumptionLimit: BigDecimal,
     val consumptions: List<Consumption> = emptyList(),
     val alerts: List<Alert> = emptyList()
 ) {
@@ -30,3 +30,16 @@ data class Device(
         return this.getCurrentConsumptionLevel() >= this.consumptionLimit
     }
 }
+
+/**
+ * @return empty [device][Device]
+ * */
+fun emptyDevice(): Device = Device(
+    id = "",
+    name = "",
+    location = "",
+    type = "",
+    consumptionLimit = BigDecimal.ZERO,
+    consumptions = emptyList(),
+    alerts = emptyList()
+)
