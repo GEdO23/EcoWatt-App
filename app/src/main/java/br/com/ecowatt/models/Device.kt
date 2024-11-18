@@ -14,13 +14,13 @@ import java.math.BigDecimal
  * @property alerts A list of alerts related to the device.
  */
 data class Device(
-    val id: String,
-    val name: String,
-    val location: String,
-    val type: String,
-    val consumptionLimit: BigDecimal,
-    val consumptions: List<Consumption>,
-    val alerts: List<Alert>
+    val id: String = "",
+    val name: String = "",
+    val location: String = "",
+    val type: String = "",
+    val consumptionLimit: BigDecimal = BigDecimal.ZERO,
+    val consumptions: List<Consumption> = emptyList(),
+    val alerts: List<Alert> = emptyList()
 ) {
     fun getCurrentConsumptionLevel(): BigDecimal {
         return this.consumptions.firstOrNull()?.consumption ?: BigDecimal.ZERO
