@@ -8,6 +8,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import br.com.ecowatt.models.Device
 import br.com.ecowatt.sampledata.highConsumptionLevelDeviceSampleData
 
+/**
+ * Component to display a list of devices and their energy consumption.
+ *
+ * @param modifier modifier to be applied to the LazyColumn.
+ * @param devices list of devices to be displayed.
+ * @param onClick called when an item is clicked.
+ * @param onDeleteDevice called when the delete button of an item is clicked.
+ */
 @Composable
 fun EnergyConsumptionList(
     modifier: Modifier = Modifier,
