@@ -1,47 +1,80 @@
 package br.com.ecowatt
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import br.com.ecowatt.navigation.Routes
+import br.com.ecowatt.ui.screens.EnergyConsumptionScreen
+import br.com.ecowatt.ui.screens.FormDeviceScreen
 import br.com.ecowatt.ui.theme.EcoWattTheme
+import br.com.ecowatt.ui.viewmodel.DeviceViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel = viewModels<DeviceViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            EcoWattTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            EcoWattApp()
+        }
+    }
+
+    @Composable
+    fun EcoWattApp(
+        navController: NavHostController = rememberNavController()
+    ) {
+        EcoWattTheme {
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                NavHost(
+                    navController = navController,
+                    startDestination = Routes.ENERGY_CONSUMPTION.name,
+                    modifier = Modifier.padding(innerPadding)
+                ) {
+                    composable(route = Routes.ENERGY_CONSUMPTION.name) {
+                        EnergyConsumptionScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            devices = viewModel.value.devices,
+                            onDeleteDevice = { deviceId ->
+                                viewModel.value.deleteDevice(deviceId)
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "Device deleted!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            },
+                            onCreateDevice = { navController.navigate(Routes.NEW_DEVICE.name) }
+                        )
+                    }
+                    composable(route = Routes.NEW_DEVICE.name) {
+                        FormDeviceScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            onSave = { filledDevice ->
+                                viewModel.value.newDevice(filledDevice)
+                                navController.popBackStack()
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "Device saved!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        )
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    EcoWattTheme {
-        Greeting("Android")
     }
 }
