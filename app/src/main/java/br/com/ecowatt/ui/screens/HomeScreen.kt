@@ -23,7 +23,10 @@ import androidx.compose.ui.unit.dp
 import br.com.ecowatt.R
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    navigateToEnergyConsumption: () -> Unit
+) {
     Box(modifier = modifier) {
         Column {
             Row(
@@ -45,7 +48,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 )
             }
             Button(
-                onClick = {},
+                onClick = navigateToEnergyConsumption,
                 colors = ButtonColors(
                     containerColor = Color(0xFF007FFF),
                     contentColor = Color.White,
@@ -67,6 +70,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 private fun HomeScreenPreview() {
     HomeScreen(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize(),
+        navigateToEnergyConsumption = {}
     )
 }

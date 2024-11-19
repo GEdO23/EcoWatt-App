@@ -23,6 +23,7 @@ import br.com.ecowatt.navigation.Screen
 import br.com.ecowatt.ui.components.EcoWattTopBar
 import br.com.ecowatt.ui.screens.EnergyConsumptionScreen
 import br.com.ecowatt.ui.screens.FormDeviceScreen
+import br.com.ecowatt.ui.screens.HomeScreen
 import br.com.ecowatt.ui.theme.EcoWattTheme
 import br.com.ecowatt.ui.viewmodel.DeviceViewModel
 
@@ -62,9 +63,15 @@ class MainActivity : ComponentActivity() {
             ) { innerPadding ->
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.ENERGY_CONSUMPTION.name,
+                    startDestination = Screen.HOME.name,
                     modifier = Modifier.padding(innerPadding)
                 ) {
+                    composable(route = Screen.HOME.name) {
+                        HomeScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            navigateToEnergyConsumption = { navController.navigate(Screen.ENERGY_CONSUMPTION.name) }
+                        )
+                    }
                     composable(route = Screen.ENERGY_CONSUMPTION.name) {
                         EnergyConsumptionScreen(
                             modifier = Modifier.fillMaxSize(),
