@@ -10,22 +10,22 @@ import kotlinx.coroutines.launch
 
 /**
  * ViewModel class for managing device data and operations.
- * 
+ *
  * @see Device
  * @see DeviceRepository
  */
 class DeviceViewModel : ViewModel() {
     private val rtdbUrl = "https://ecowatt-database-default-rtdb.firebaseio.com"
     private val tableName = "devices"
-    
+
     private val repo = DeviceRepository(
         database = rtdbUrl,
         table = tableName
     )
 
-    /** 
+    /**
      * A mutable list to hold Device objects.
-     * 
+     *
      * @see Device
      */
     val devices = mutableStateListOf<Device>()
@@ -36,7 +36,7 @@ class DeviceViewModel : ViewModel() {
 
     /**
      * Loads the list of devices from the repository.
-     * 
+     *
      * @see Device
      * @see DeviceRepository
      */
@@ -60,7 +60,7 @@ class DeviceViewModel : ViewModel() {
      * Creates a new device in the repository.
      *
      * @param device The device object to be created.
-     * 
+     *
      * @see Device
      * @see DeviceRepository
      */
@@ -83,13 +83,13 @@ class DeviceViewModel : ViewModel() {
             )
         }
     }
-    
+
     /**
      * Updates an existing device in the repository.
      *
      * @param id The ID of the device to be updated.
      * @param device The device object with updated data.
-     * 
+     *
      * @see Device
      * @see DeviceRepository
      */
@@ -116,7 +116,7 @@ class DeviceViewModel : ViewModel() {
      * Deletes a device from the repository.
      *
      * @param id The ID of the device to be deleted.
-     * 
+     *
      * @see Device
      * @see DeviceRepository
      */
@@ -131,7 +131,7 @@ class DeviceViewModel : ViewModel() {
                 },
                 onRequestSuccess = {
                     Log.d("ECOWATT", "Device deleted!")
-                    this@DeviceViewModel.loadDevices()
+                    this@DeviceViewModel.devices.removeAll { it.id == id }
                 }
             )
         }

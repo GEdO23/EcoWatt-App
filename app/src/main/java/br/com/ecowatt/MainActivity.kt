@@ -8,8 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -33,6 +35,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun EcoWattApp(
         navController: NavHostController = rememberNavController()
@@ -47,7 +50,7 @@ class MainActivity : ComponentActivity() {
                     composable(route = Routes.ENERGY_CONSUMPTION.name) {
                         EnergyConsumptionScreen(
                             modifier = Modifier.fillMaxSize(),
-                            devices = viewModel.value.devices,
+                            devices = remember { viewModel.value.devices },
                             onDeleteDevice = { deviceId ->
                                 viewModel.value.deleteDevice(deviceId)
                                 Toast.makeText(
