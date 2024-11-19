@@ -51,6 +51,7 @@ class DeviceViewModel : ViewModel() {
                     it?.forEach { (_, device) ->
                         if (device != null) devices.add(device)
                     }
+                    devices.sortBy { device -> device.name }
                 }
             )
         }
