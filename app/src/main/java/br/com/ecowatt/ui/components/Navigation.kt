@@ -1,15 +1,7 @@
 package br.com.ecowatt.ui.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -53,14 +45,16 @@ fun EcoWattTopBar(
                 )
             }
         }
-        Text(
-            text = currentScreen.title,
-            color = Gray800,
-            fontSize = 48.sp,
-            fontWeight = FontWeight.SemiBold,
-            letterSpacing = 0.5.sp,
-            lineHeight = 48.sp * 1.2
-        )
+        currentScreen.title?.let { title ->
+            Text(
+                text = title,
+                color = Gray800,
+                fontSize = 48.sp,
+                fontWeight = FontWeight.SemiBold,
+                letterSpacing = 0.5.sp,
+                lineHeight = 48.sp * 1.2
+            )
+        }
     }
 }
 
