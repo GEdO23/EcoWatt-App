@@ -42,14 +42,16 @@ fun DeviceHeader(
             color = Gray500,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
-            letterSpacing = 0.5.sp
+            letterSpacing = 0.5.sp,
+            lineHeight = 32.sp * 0.8
         )
         Text(
             text = device.name,
             color = Gray800,
             fontSize = 32.sp,
             fontWeight = FontWeight.SemiBold,
-            letterSpacing = 0.5.sp
+            letterSpacing = 0.5.sp,
+            lineHeight = 32.sp * 1.5
         )
     }
 }
@@ -63,5 +65,9 @@ private fun DeviceHeaderPreview() {
             .statusBarsPadding()
             .padding(16.dp),
         device = lowConsumptionLevelDeviceSampleData
+            .copy(
+                name = "um device de teste atualizado",
+                location = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            )
     )
 }
