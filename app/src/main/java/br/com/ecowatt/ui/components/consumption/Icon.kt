@@ -17,6 +17,11 @@ import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.Neutral1000
 import br.com.ecowatt.ui.theme.Red400
 
+enum class IconType {
+    CONSUMPTION_LEVEL,
+    CONSUMPTION_REPORT
+}
+
 /**
  * Component that displays an icon representing the consumption level.
  *
@@ -83,7 +88,7 @@ fun ConsumptionReportIcon(
 
 /**
  * Function that gets the background color of the [ConsumptionLevelIcon].
- * 
+ *
  * The background color is based on the consumption level.
  *
  * @param isConsumptionHigh indicates if the consumption is high.
