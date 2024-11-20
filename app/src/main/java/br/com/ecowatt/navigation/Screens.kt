@@ -11,7 +11,7 @@ package br.com.ecowatt.navigation
  * @property title The title of the screen.
  */
 enum class Screen(
-    val title: String,
+    val title: String? = null,
 ) {
     /**
      * Home screen.
@@ -39,7 +39,7 @@ enum class Screen(
      * 
      * @sample br.com.ecowatt.ui.screens.DeviceDetailsScreen
      */
-    DEVICE_DETAILS(""),
+    DEVICE_DETAILS,
     
     /**
      * Screen for updating an device.
