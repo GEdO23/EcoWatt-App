@@ -27,6 +27,7 @@ import br.com.ecowatt.ui.theme.Neutral1000
 fun EnergyConsumptionScreen(
     modifier: Modifier = Modifier,
     devices: List<Device>,
+    onClickDevice: (deviceClicked: Device) -> Unit,
     onCreateDevice: () -> Unit,
     onDeleteDevice: (deviceId: String) -> Unit
 ) {
@@ -41,7 +42,7 @@ fun EnergyConsumptionScreen(
         } else {
             EnergyConsumptionList(
                 devices = devices,
-                onClick = {},
+                onClick = { onClickDevice(it) },
                 onDeleteDevice = onDeleteDevice
             )
         }
@@ -70,6 +71,7 @@ private fun EnergyConsumptionScreenPreview() {
                 EnergyConsumptionScreen(
                     modifier = Modifier.fillMaxSize(),
                     devices = remember { mutableListOf<Device>() },
+                    onClickDevice = {},
                     onCreateDevice = {},
                     onDeleteDevice = {}
                 )

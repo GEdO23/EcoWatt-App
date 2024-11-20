@@ -21,6 +21,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import br.com.ecowatt.navigation.Screen
 import br.com.ecowatt.ui.components.EcoWattTopBar
+import br.com.ecowatt.ui.screens.DeviceDetailsScreen
 import br.com.ecowatt.ui.screens.EnergyConsumptionScreen
 import br.com.ecowatt.ui.screens.FormDeviceScreen
 import br.com.ecowatt.ui.screens.HomeScreen
@@ -76,6 +77,10 @@ class MainActivity : ComponentActivity() {
                         EnergyConsumptionScreen(
                             modifier = Modifier.fillMaxSize(),
                             devices = remember { viewModel.value.devices },
+                            onClickDevice = {
+                                viewModel.value.currentDevice.value = it
+                                navController.navigate(Screen.DEVICE_DETAILS.name)
+                            },
                             onDeleteDevice = { deviceId ->
                                 viewModel.value.deleteDevice(deviceId)
                                 Toast.makeText(
@@ -84,10 +89,10 @@ class MainActivity : ComponentActivity() {
                                     Toast.LENGTH_LONG
                                 ).show()
                             },
-                            onCreateDevice = { navController.navigate(Screen.NEW_DEVICE.name) }
+                            onCreateDevice = { navController.navigate(Screen.REGISTER_DEVICE.name) }
                         )
                     }
-                    composable(route = Screen.NEW_DEVICE.name) {
+                    composable(route = Screen.REGISTER_DEVICE.name) {
                         FormDeviceScreen(
                             modifier = Modifier.fillMaxSize(),
                             onSave = { filledDevice ->
@@ -99,6 +104,13 @@ class MainActivity : ComponentActivity() {
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
+                        )
+                    }
+                    composable(route = Screen.DEVICE_DETAILS.name) {
+                        DeviceDetailsScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            device = viewModel.value.currentDevice.value,
+                            onClickEditDevice = { }
                         )
                     }
                 }
