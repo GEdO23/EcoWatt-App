@@ -18,6 +18,12 @@ import br.com.ecowatt.ui.theme.Gray600
 import br.com.ecowatt.ui.theme.Gray800
 import br.com.ecowatt.ui.theme.Neutral1000
 
+/**
+ * Component that displays the header information of a device.
+ *
+ * @param modifier The modifier to be applied to the header.
+ * @param device The device whose header information is to be displayed.
+ */
 @Composable
 fun DeviceHeader(
     modifier: Modifier = Modifier,
