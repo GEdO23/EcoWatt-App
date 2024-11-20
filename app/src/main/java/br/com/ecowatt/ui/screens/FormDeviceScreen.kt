@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import br.com.ecowatt.models.Device
 import br.com.ecowatt.models.emptyDevice
 import br.com.ecowatt.sampledata.lowConsumptionLevelDeviceSampleData
-import br.com.ecowatt.ui.components.DeviceForm
-import br.com.ecowatt.ui.components.SaveButton
+import br.com.ecowatt.ui.components.device.DeviceForm
+import br.com.ecowatt.ui.components.device.SaveButton
 import br.com.ecowatt.ui.theme.EcoWattTheme
 
 @Composable
