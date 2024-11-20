@@ -29,6 +29,10 @@ data class Device(
     fun isConsumptionLevelHigh(): Boolean {
         return getCurrentConsumptionLevel() >= consumptionLimit
     }
+
+    fun getNumberOfReports(): UInt {
+        return alerts?.size?.toUInt() ?: 0u
+    }
 }
 
 /**
