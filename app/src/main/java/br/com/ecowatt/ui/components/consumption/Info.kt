@@ -13,6 +13,12 @@ import br.com.ecowatt.sampledata.lowConsumptionLevelDeviceSampleData
 import br.com.ecowatt.ui.components.device.DeviceInfoContainer
 import br.com.ecowatt.ui.theme.Azure500
 
+/**
+ * Component that displays the current energy consumption level of a device.
+ *
+ * @param modifier Modifier to be applied to the container.
+ * @param device The device whose consumption level is to be displayed.
+ */
 @Composable
 fun EnergyConsumptionInfo(
     modifier: Modifier = Modifier,
@@ -32,6 +38,13 @@ fun EnergyConsumptionInfo(
     }
 }
 
+/**
+ * Component that displays the number of consumption reports of a device
+ *
+ * @param modifier The modifier to be applied to the container.
+ * @param device The device whose consumption reports are to be displayed.
+ * @param onClick Function to be executed when the container is clicked.
+ */
 @Composable
 fun ConsumptionReportsInfo(
     modifier: Modifier = Modifier,
@@ -53,6 +66,12 @@ fun ConsumptionReportsInfo(
     }
 }
 
+/**
+ * Component that displays the consumption limit of a device.
+ *
+ * @param modifier The modifier to be applied to the container.
+ * @param device The device whose consumption limit is to be displayed.
+ */
 @Composable
 fun ConsumptionLimitInfo(
     modifier: Modifier = Modifier,
