@@ -1,4 +1,4 @@
-package br.com.ecowatt.ui.components
+package br.com.ecowatt.ui.components.device
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
