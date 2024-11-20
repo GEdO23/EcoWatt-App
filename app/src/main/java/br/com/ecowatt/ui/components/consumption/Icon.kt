@@ -13,12 +13,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.ecowatt.R
 import br.com.ecowatt.ui.components.IconSize
+import br.com.ecowatt.ui.components.consumption.IconType.CONSUMPTION_LEVEL
 import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.Neutral1000
 import br.com.ecowatt.ui.theme.Red400
 
+/**
+ * Enum class representing the types of icons used in the consumption components.
+ * 
+ * @property CONSUMPTION_LEVEL
+ * 
+ * @sample br.com.ecowatt.ui.components.consumption.ConsumptionLimitInfo
+ */
 enum class IconType {
+    /** Icon representing the consumption level */
     CONSUMPTION_LEVEL,
+
+    /** Icon representing the consumption report */
     CONSUMPTION_REPORT
 }
 
