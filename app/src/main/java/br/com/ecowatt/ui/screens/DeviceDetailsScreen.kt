@@ -1,6 +1,8 @@
 package br.com.ecowatt.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -27,6 +29,9 @@ fun DeviceDetailsScreen(
 ) {
     Box(modifier = modifier) {
         Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
             DeviceHeader(
@@ -74,9 +79,9 @@ private fun DeviceDetailsScreenPreview() {
     DeviceDetailsScreen(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
-            .padding(16.dp),
-        device = lowConsumptionLevelDeviceSampleData,
+            .statusBarsPadding(),
+        device = lowConsumptionLevelDeviceSampleData
+            .copy(name = "um device de teste atualizado"),
         onClickEditDevice = {}
     )
 }
