@@ -6,7 +6,7 @@ package br.com.ecowatt.navigation
  * Screens:
  * * [HOME]
  * * [ENERGY_CONSUMPTION]
- * * [NEW_DEVICE]
+ * * [REGISTER_DEVICE]
  *
  * @property title The title of the screen.
  */
@@ -32,5 +32,12 @@ enum class Screen(
      *
      * @sample br.com.ecowatt.ui.screens.FormDeviceScreen
      * */
-    NEW_DEVICE("Register device")
+    REGISTER_DEVICE("Register device"),
+    
+    /**
+     * Screen for displaying device details.
+     * 
+     * @sample br.com.ecowatt.ui.screens.DeviceDetailsScreen
+     */
+    DEVICE_DETAILS("")
 }

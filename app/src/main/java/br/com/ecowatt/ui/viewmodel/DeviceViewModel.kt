@@ -2,9 +2,11 @@ package br.com.ecowatt.ui.viewmodel
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.ecowatt.models.Device
+import br.com.ecowatt.models.emptyDevice
 import br.com.ecowatt.repository.DeviceRepository
 import kotlinx.coroutines.launch
 
@@ -29,6 +31,13 @@ class DeviceViewModel : ViewModel() {
      * @see Device
      */
     val devices = mutableStateListOf<Device>()
+
+    /**
+     * A mutable Device object.
+     *
+     * @see Device
+     */
+    val currentDevice = mutableStateOf<Device>(emptyDevice())
 
     init {
         loadDevices()
