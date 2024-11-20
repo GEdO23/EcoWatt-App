@@ -21,6 +21,13 @@ import br.com.ecowatt.ui.components.consumption.IconType
 import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.Neutral1000
 
+/**
+ * Component that displays a container with device information.
+ *
+ * @param modifier The modifier to be applied to the container.
+ * @param symbol The icon type to be displayed in the container.
+ * @param content The content to be displayed inside the container.
+ */
 @Composable
 fun DeviceInfoContainer(
     modifier: Modifier = Modifier,
@@ -40,6 +47,14 @@ fun DeviceInfoContainer(
     }
 }
 
+/**
+ * Component that displays a clickable container with device information.
+ *
+ * @param modifier The modifier to be applied to the container.
+ * @param symbol The icon type to be displayed in the container.
+ * @param onClick Function to be executed when the container is clicked.
+ * @param content The content to be displayed inside the container.
+ */
 @Composable
 fun DeviceInfoContainer(
     modifier: Modifier = Modifier,
@@ -66,6 +81,11 @@ fun DeviceInfoContainer(
     }
 }
 
+/**
+ * Component that displays the appropriate icon based on the icon type.
+ *
+ * @param symbol The icon type to be displayed.
+ */
 @Composable
 private fun DeviceInfoSymbol(symbol: IconType) {
     return when (symbol) {
