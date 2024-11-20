@@ -25,7 +25,7 @@ enum class Screen(
      *
      * @sample br.com.ecowatt.ui.screens.EnergyConsumptionScreen
      * */
-    ENERGY_CONSUMPTION("Energy consumption"),
+    ENERGY_CONSUMPTION,
 
     /**
      * Screen for registering a new device.
