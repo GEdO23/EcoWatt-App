@@ -39,5 +39,12 @@ enum class Screen(
      * 
      * @sample br.com.ecowatt.ui.screens.DeviceDetailsScreen
      */
-    DEVICE_DETAILS("")
+    DEVICE_DETAILS(""),
+    
+    /**
+     * Screen for updating an device.
+     *
+     * @sample br.com.ecowatt.ui.screens.FormDeviceScreen
+     */
+    UPDATE_DEVICE("Update device")
 }

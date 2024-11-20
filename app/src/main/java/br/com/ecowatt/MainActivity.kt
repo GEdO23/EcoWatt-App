@@ -110,7 +110,23 @@ class MainActivity : ComponentActivity() {
                         DeviceDetailsScreen(
                             modifier = Modifier.fillMaxSize(),
                             device = viewModel.value.currentDevice.value,
-                            onClickEditDevice = { }
+                            onClickEditDevice = { navController.navigate(Screen.UPDATE_DEVICE.name) }
+                        )
+                    }
+                    composable(route = Screen.UPDATE_DEVICE.name) {
+                        val currentDevice = viewModel.value.currentDevice
+                        FormDeviceScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            device = currentDevice,
+                            onSave = { filledDevice ->
+                                viewModel.value.updateDevice(currentDevice.value.id, filledDevice)
+                                navController.popBackStack()
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "Device updated!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         )
                     }
                 }
