@@ -16,19 +16,16 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
-import br.com.ecowatt.ui.screens.EnergyConsumptionScreen
 import br.com.ecowatt.ui.theme.Gray800
 
 /**
- * Component that displays an alert when the consumption list is empty.
+ * Composable function that displays an alert for an empty consumption list.
  *
- * @param modifier The [Modifier] for this component.
- * @sample EnergyConsumptionScreen
+ * @param modifier The modifier to be applied to this component
+ * @sample br.com.ecowatt.samples.components.DeviceComponentSamples.EmptyDeviceListAlert
  */
 @Composable
-fun EmptyListAlert(
-    modifier: Modifier = Modifier
-) {
+fun EmptyDeviceListAlert(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp, alignment = Alignment.CenterVertically)
@@ -65,5 +62,5 @@ fun EmptyListAlert(
 @PreviewLightDark
 @Composable
 private fun EmptyListAlertPreview() {
-    EmptyListAlert()
+    EmptyDeviceListAlert()
 }
