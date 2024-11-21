@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.ecowatt.R
 import br.com.ecowatt.models.Device
-import br.com.ecowatt.ui.components.consumption.EmptyListAlert
+import br.com.ecowatt.ui.components.consumption.EmptyDeviceListAlert
 import br.com.ecowatt.ui.components.consumption.EnergyConsumptionList
 import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.EcoWattTheme
@@ -33,7 +33,7 @@ fun EnergyConsumptionScreen(
 ) {
     Box(modifier = modifier) {
         if (devices.isEmpty()) {
-            EmptyListAlert(
+            EmptyDeviceListAlert(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 64.dp)
