@@ -40,6 +40,7 @@ enum class IconType {
  * @param isConsumptionHigh indicates if the consumption is high, default is false.
  * @see IconSize
  * @see ConsumptionReportIcon
+ * @sample br.com.ecowatt.samples.components.DeviceComponentSamples.ConsumptionLevelIcon
  */
 @Composable
 fun ConsumptionLevelIcon(
@@ -72,6 +73,7 @@ fun ConsumptionLevelIcon(
  * @param isConsumptionHigh indicates if the consumption is high, default is false.
  * @see IconSize
  * @see ConsumptionLevelIcon
+ * @sample br.com.ecowatt.samples.components.DeviceComponentSamples.ConsumptionReportIcon
  */
 @Composable
 fun ConsumptionReportIcon(
