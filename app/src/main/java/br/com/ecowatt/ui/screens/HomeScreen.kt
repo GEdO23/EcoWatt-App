@@ -2,18 +2,8 @@ package br.com.ecowatt.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,6 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.ecowatt.R
+import br.com.ecowatt.ui.components.Button
 
 @Composable
 fun HomeScreen(
@@ -48,19 +39,12 @@ fun HomeScreen(
                 )
             }
             Button(
-                onClick = navigateToEnergyConsumption,
-                colors = ButtonColors(
-                    containerColor = Color(0xFF007FFF),
-                    contentColor = Color.White,
-                    disabledContainerColor = Color.Gray,
-                    disabledContentColor = Color.DarkGray
-                ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-            ) {
-                Text(text = "Energy Consumption")
-            }
+                    .padding(horizontal = 16.dp),
+                text = "Energy Consumption",
+                onClick = navigateToEnergyConsumption
+            )
         }
     }
 }
