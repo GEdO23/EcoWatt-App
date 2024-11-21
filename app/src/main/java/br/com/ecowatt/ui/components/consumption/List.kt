@@ -10,8 +10,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.ecowatt.R
 import br.com.ecowatt.models.Device
-import br.com.ecowatt.sampledata.highConsumptionLevelDeviceSampleData
-import br.com.ecowatt.sampledata.lowConsumptionLevelDeviceSampleData
 import br.com.ecowatt.ui.theme.*
 
 /**
@@ -125,7 +123,7 @@ private fun getListItemColors(
 @Composable
 private fun ListItemLowLevelPreview() {
     EnergyConsumptionListItem(
-        device = highConsumptionLevelDeviceSampleData,
+        device = br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice,
         isConsumptionHigh = false,
         onClick = {},
         onDeleteDevice = {}
@@ -136,7 +134,7 @@ private fun ListItemLowLevelPreview() {
 @Composable
 private fun ListItemHighLevelPreview() {
     EnergyConsumptionListItem(
-        device = highConsumptionLevelDeviceSampleData,
+        device = br.com.ecowatt.sampledata.DeviceSampleData.highConsumptionLevelDevice,
         isConsumptionHigh = true,
         onClick = {},
         onDeleteDevice = {}
@@ -147,14 +145,7 @@ private fun ListItemHighLevelPreview() {
 @Composable
 private fun ListPreview() {
     EnergyConsumptionList(
-        devices = listOf(
-            lowConsumptionLevelDeviceSampleData,
-            lowConsumptionLevelDeviceSampleData,
-            highConsumptionLevelDeviceSampleData,
-            highConsumptionLevelDeviceSampleData,
-            lowConsumptionLevelDeviceSampleData,
-            highConsumptionLevelDeviceSampleData,
-        ),
+        devices = br.com.ecowatt.sampledata.DeviceSampleData.listOfDeviceConsumptionLevels,
         onClick = {},
         onDeleteDevice = {}
     )

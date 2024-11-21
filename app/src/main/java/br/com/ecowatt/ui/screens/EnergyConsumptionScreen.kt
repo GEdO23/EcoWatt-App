@@ -70,7 +70,7 @@ private fun EnergyConsumptionScreenPreview() {
             Box(modifier = Modifier.padding(innerPadding)) {
                 EnergyConsumptionScreen(
                     modifier = Modifier.fillMaxSize(),
-                    devices = remember { mutableListOf<Device>() },
+                    devices = remember { br.com.ecowatt.sampledata.DeviceSampleData.listOfDeviceConsumptionLevels },
                     onClickDevice = {},
                     onCreateDevice = {},
                     onDeleteDevice = {}

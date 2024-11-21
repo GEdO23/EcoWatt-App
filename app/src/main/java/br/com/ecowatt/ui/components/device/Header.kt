@@ -12,7 +12,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.ecowatt.models.Device
-import br.com.ecowatt.sampledata.lowConsumptionLevelDeviceSampleData
 import br.com.ecowatt.ui.theme.Gray500
 import br.com.ecowatt.ui.theme.Gray600
 import br.com.ecowatt.ui.theme.Gray800
@@ -70,10 +69,6 @@ private fun DeviceHeaderPreview() {
             .fillMaxWidth()
             .statusBarsPadding()
             .padding(16.dp),
-        device = lowConsumptionLevelDeviceSampleData
-            .copy(
-                name = "um device de teste atualizado",
-                location = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            )
+        device = br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice
     )
 }
