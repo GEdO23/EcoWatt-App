@@ -9,7 +9,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.ecowatt.models.Device
-import br.com.ecowatt.sampledata.lowConsumptionLevelDeviceSampleData
 import br.com.ecowatt.ui.components.device.DeviceInfoContainer
 import br.com.ecowatt.ui.theme.Azure500
 
@@ -102,17 +101,17 @@ private fun InfoListPreview() {
     ) {
         EnergyConsumptionInfo(
             modifier = Modifier.fillMaxWidth(),
-            device = lowConsumptionLevelDeviceSampleData
+            device = br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice
         )
 
         ConsumptionLimitInfo(
             modifier = Modifier.fillMaxWidth(),
-            device = lowConsumptionLevelDeviceSampleData
+            device = br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice
         )
 
         ConsumptionReportsInfo(
             modifier = Modifier.fillMaxWidth(),
-            device = lowConsumptionLevelDeviceSampleData,
+            device = br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice,
             onClick = {}
         )
     }

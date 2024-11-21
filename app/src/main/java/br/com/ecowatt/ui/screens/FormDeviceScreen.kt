@@ -14,7 +14,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import br.com.ecowatt.models.Device
 import br.com.ecowatt.models.emptyDevice
-import br.com.ecowatt.sampledata.lowConsumptionLevelDeviceSampleData
 import br.com.ecowatt.ui.components.device.DeviceForm
 import br.com.ecowatt.ui.components.device.SaveButton
 import br.com.ecowatt.ui.theme.EcoWattTheme
@@ -49,7 +48,7 @@ private fun FormDeviceScreenPreview() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding),
-                device = remember { mutableStateOf(lowConsumptionLevelDeviceSampleData) },
+                device = remember { mutableStateOf(br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice) },
                 onSave = {}
             )
         }

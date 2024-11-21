@@ -13,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.ecowatt.R
 import br.com.ecowatt.models.Device
-import br.com.ecowatt.sampledata.lowConsumptionLevelDeviceSampleData
 import br.com.ecowatt.ui.components.consumption.ConsumptionLimitInfo
 import br.com.ecowatt.ui.components.consumption.ConsumptionReportsInfo
 import br.com.ecowatt.ui.components.consumption.EnergyConsumptionInfo
@@ -80,7 +79,7 @@ private fun DeviceDetailsScreenPreview() {
         modifier = Modifier
             .fillMaxSize()
             .statusBarsPadding(),
-        device = lowConsumptionLevelDeviceSampleData
+        device = br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice
             .copy(name = "um device de teste atualizado"),
         onClickEditDevice = {}
     )
