@@ -8,12 +8,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,34 +19,44 @@ import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
 import br.com.ecowatt.models.device.Device
 import br.com.ecowatt.models.device.DeviceSampleData
+import br.com.ecowatt.ui.components.CustomIcon
 import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.Neutral1000
+import br.com.ecowatt.ui.theme.Red100
+import br.com.ecowatt.ui.theme.Red400
 
 /**
- * Component that displays the current energy consumption level of a device.
+ * A composable function that displays the energy consumption information of a device.
  *
- * @param modifier Modifier to be applied to the container.
- * @param device The device whose consumption level is to be displayed.
- * @sample Samples.InfoListSample
+ * @param modifier A [Modifier] for customizing the layout or behavior of the component.
+ * @param device The [Device] object containing the device information.
  */
 @Composable
 internal fun EnergyConsumptionInfo(
     modifier: Modifier = Modifier,
     device: Device
 ) {
+    val contentColor = if (device.isConsumptionLevelHigh()) Red400 else Azure500
+    val backgroundColor = if (device.isConsumptionLevelHigh()) Red100 else Neutral1000
+    val shape = RoundedCornerShape(24.dp)
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .background(color = Neutral1000, shape = RoundedCornerShape(24.dp))
-            .border(width = 2.dp, color = Azure500, shape = RoundedCornerShape(24.dp))
+            .background(color = backgroundColor, shape = shape)
+            .border(width = 2.dp, color = contentColor, shape = shape)
             .padding(16.dp)
     ) {
-        ConsumptionLevelIcon()
+        CustomIcon(
+            color = contentColor,
+            drawable = R.drawable.ic_energy,
+            description = ""
+        )
 
         Text(
             text = "${device.getCurrentConsumptionLevel()} watts/minute",
-            color = Azure500,
+            color = contentColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
             letterSpacing = 0.5.sp
@@ -57,12 +65,11 @@ internal fun EnergyConsumptionInfo(
 }
 
 /**
- * Component that displays the number of consumption reports of a device
+ * A composable function that displays the consumption reports information of a device.
  *
- * @param modifier The modifier to be applied to the container.
- * @param device The device whose consumption reports are to be displayed.
- * @param onClick Function to be executed when the container is clicked.
- * @sample Samples.InfoListSample
+ * @param modifier A [Modifier] for customizing the layout or behavior of the component.
+ * @param device The [Device] object containing the device information.
+ * @param onClick The callback to be invoked when the component is clicked.
  */
 @Composable
 internal fun ConsumptionReportsInfo(
@@ -70,58 +77,67 @@ internal fun ConsumptionReportsInfo(
     device: Device,
     onClick: () -> Unit
 ) {
+    val contentColor = if (device.isConsumptionLevelHigh()) Red400 else Azure500
+    val backgroundColor = if (device.isConsumptionLevelHigh()) Red100 else Neutral1000
+    val shape = RoundedCornerShape(24.dp)
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .background(color = Neutral1000, shape = RoundedCornerShape(24.dp))
-            .border(width = 2.dp, color = Azure500, shape = RoundedCornerShape(24.dp))
+            .background(color = backgroundColor, shape = shape)
+            .border(width = 2.dp, color = contentColor, shape = shape)
             .padding(16.dp)
             .clickable { onClick() }
     ) {
-        ConsumptionReportIcon()
+        CustomIcon(
+            color = contentColor,
+            drawable = R.drawable.ic_priority_high,
+            description = ""
+        )
 
         Text(
             text = "${device.getNumberOfReports()} consumption reports",
-            color = Azure500,
+            color = contentColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
             letterSpacing = 0.5.sp
-        )
-
-        Icon(
-            painter = painterResource(R.drawable.ic_chevron_left),
-            contentDescription = "",
-            tint = Azure500
         )
     }
 }
 
 /**
- * Component that displays the consumption limit of a device.
+ * A composable function that displays the consumption limit information of a device.
  *
- * @param modifier The modifier to be applied to the container.
- * @param device The device whose consumption limit is to be displayed.
- * @sample Samples.InfoListSample
+ * @param modifier A [Modifier] for customizing the layout or behavior of the component.
+ * @param device The [Device] object containing the device information.
  */
 @Composable
 internal fun ConsumptionLimitInfo(
     modifier: Modifier = Modifier,
     device: Device
 ) {
+    val contentColor = if (device.isConsumptionLevelHigh()) Red400 else Azure500
+    val backgroundColor = if (device.isConsumptionLevelHigh()) Red100 else Neutral1000
+    val shape = RoundedCornerShape(24.dp)
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .background(color = Neutral1000, shape = RoundedCornerShape(24.dp))
-            .border(width = 2.dp, color = Azure500, shape = RoundedCornerShape(24.dp))
+            .background(color = backgroundColor, shape = shape)
+            .border(width = 2.dp, color = contentColor, shape = shape)
             .padding(16.dp)
     ) {
-        ConsumptionLevelIcon()
+        CustomIcon(
+            color = contentColor,
+            drawable = R.drawable.ic_energy,
+            description = ""
+        )
 
         Text(
             text = "Consumption limit: ${device.consumptionLimit} watts",
-            color = Azure500,
+            color = contentColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
             letterSpacing = 0.5.sp
