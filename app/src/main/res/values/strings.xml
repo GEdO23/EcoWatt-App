@@ -9,6 +9,12 @@
     <string name="device_info_consumption_reports_text">%1$s consumption reports</string>
     <string name="consumption_limit">Consumption limit: %1$s %2$s</string>
     
+    <string name="screen_title_signup">Sign up</string>
+    <string name="screen_title_login">Login</string>
+    <string name="screen_title_home">Home</string>
+    <string name="screen_title_register_device">Register device</string>
+    <string name="screen_title_update_device">Update device</string>
+    
     <string name="empty_device_list_alert_title">Empty list</string>
     <string name="empty_device_list_alert_subtitle">Get started by adding a new device to the list</string>
 
