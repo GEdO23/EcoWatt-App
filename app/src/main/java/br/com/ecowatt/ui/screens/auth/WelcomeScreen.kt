@@ -9,7 +9,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.ecowatt.ui.components.Button
+import br.com.ecowatt.ui.components.CustomButton
 import br.com.ecowatt.ui.theme.Gray600
 import br.com.ecowatt.ui.theme.Gray800
 
@@ -42,7 +42,7 @@ internal fun WelcomeScreen(
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            Button(
+            CustomButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
@@ -50,7 +50,7 @@ internal fun WelcomeScreen(
                 onClick = onSignup
             )
 
-            Button(
+            CustomButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),

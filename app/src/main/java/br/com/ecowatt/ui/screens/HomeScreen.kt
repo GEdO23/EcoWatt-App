@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
 import br.com.ecowatt.models.user.User
 import br.com.ecowatt.models.user.UserSampleData
-import br.com.ecowatt.ui.components.Button
+import br.com.ecowatt.ui.components.CustomButton
 import br.com.ecowatt.ui.theme.Gray600
 import br.com.ecowatt.ui.theme.Gray800
 
@@ -35,7 +35,7 @@ internal fun HomeScreen(
 
         WelcomeUser(userName = user.displayName)
 
-        Button(
+        CustomButton(
             modifier = Modifier.fillMaxWidth(),
             text = "Energy Consumption",
             onClick = onEnergyConsumptionClick

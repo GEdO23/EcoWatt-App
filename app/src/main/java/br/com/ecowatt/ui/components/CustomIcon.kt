@@ -14,6 +14,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.times
 import br.com.ecowatt.ui.theme.Neutral1000
 
+/**
+ * A composable function that displays a custom icon with a specified size, color, and drawable resource.
+ *
+ * @param size The size of the icon, default is [IconSize.MD].
+ * @param color The background color of the icon, default is [Color.Unspecified].
+ * @param drawable The drawable resource ID for the icon.
+ * @param description The content description for the icon, used for accessibility.
+ * @sample br.com.ecowatt.ui.components.device.ConsumptionLevelIcon
+ * @sample br.com.ecowatt.ui.components.device.ConsumptionReportIcon
+ * @see Icon
+ */
 @Composable
 fun CustomIcon(
     size: IconSize = IconSize.MD,

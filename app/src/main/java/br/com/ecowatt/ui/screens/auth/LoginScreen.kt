@@ -15,7 +15,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.ecowatt.dto.auth.LoginRequest
-import br.com.ecowatt.ui.components.Button
+import br.com.ecowatt.ui.components.CustomButton
 
 @Composable
 internal fun LoginScreen(
@@ -54,7 +54,7 @@ internal fun LoginScreen(
             visualTransformation = PasswordVisualTransformation()
         )
 
-        Button(
+        CustomButton(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
