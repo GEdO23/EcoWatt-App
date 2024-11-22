@@ -81,7 +81,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(16.dp),
                         user = userViewModel.user.value,
-                        navigateToEnergyConsumption = { navController.navigate(Screen.ENERGY_CONSUMPTION.name) }
+                        onEnergyConsumptionClick = { navController.navigate(Screen.ENERGY_CONSUMPTION.name) }
                     )
                 }
                 composable(route = Screen.ENERGY_CONSUMPTION.name) {
