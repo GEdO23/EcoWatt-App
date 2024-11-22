@@ -19,6 +19,11 @@ enum class Screen(
     val title: String? = null,
 ) {
     /**
+     * On boarding [NavGraph][androidx.navigation.NavGraph].
+     */
+    ON_BOARDING,
+    
+    /**
      * Welcome screen.
      */
     WELCOME,
@@ -37,6 +42,11 @@ enum class Screen(
      * Home screen.
      * */
     HOME("Home"),
+    
+    /**
+     * Devices CRUD [NavGraph][androidx.navigation.NavGraph].
+     */
+    DEVICES,
 
     /**
      * Energy consumption screen.

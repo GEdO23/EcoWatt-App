@@ -15,10 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.*
 import br.com.ecowatt.dto.auth.LoginRequest
 import br.com.ecowatt.dto.auth.SignupRequest
 import br.com.ecowatt.navigation.Screen
@@ -77,62 +74,78 @@ class MainActivity : ComponentActivity() {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = Screen.WELCOME.name,
+                startDestination = Screen.ON_BOARDING.name,
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable(route = Screen.WELCOME.name) {
-                    WelcomeScreen(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp),
-                        onSignup = { navController.navigate(Screen.SIGNUP.name) },
-                        onLogin = { navController.navigate(Screen.LOGIN.name) }
-                    )
+                navigation(
+                    route = Screen.ON_BOARDING.name,
+                    startDestination = Screen.WELCOME.name
+                ) {
+                    composable(route = Screen.WELCOME.name) {
+                        WelcomeScreen(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                            onSignup = { navController.navigate(Screen.SIGNUP.name) },
+                            onLogin = { navController.navigate(Screen.LOGIN.name) }
+                        )
+                    }
+                    
+                    composable(route = Screen.SIGNUP.name) {
+                        SignupScreen(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                            onSignup = { user: SignupRequest ->
+                                auth.signUp(
+                                    user = user,
+                                    onFailure = {
+                                        Toast.makeText(
+                                            this@MainActivity,
+                                            "Signup failed",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    },
+                                    onSuccess = {
+                                        navController.popBackStack(
+                                            route = Screen.SIGNUP.name,
+                                            inclusive = true
+                                        )
+                                        navController.navigate(Screen.HOME.name)
+                                    }
+                                )
+                            }
+                        )
+                    }
+                    
+                    composable(route = Screen.LOGIN.name) {
+                        LoginScreen(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                            onLogin = { user: LoginRequest ->
+                                auth.login(
+                                    user = user,
+                                    onFailure = {
+                                        Toast.makeText(
+                                            this@MainActivity,
+                                            "Login failed",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    },
+                                    onSuccess = {
+                                        navController.popBackStack(
+                                            route = Screen.LOGIN.name,
+                                            inclusive = true
+                                        )
+                                        navController.navigate(Screen.HOME.name)
+                                    }
+                                )
+                            }
+                        )
+                    }
                 }
-                composable(route = Screen.SIGNUP.name) {
-                    SignupScreen(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp),
-                        onSignup = { user: SignupRequest ->
-                            auth.signUp(
-                                user = user,
-                                onFailure = {
-                                    Toast.makeText(
-                                        this@MainActivity,
-                                        "Signup failed",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                },
-                                onSuccess = {
-                                    navController.navigate(Screen.HOME.name)
-                                }
-                            )
-                        }
-                    )
-                }
-                composable(route = Screen.LOGIN.name) {
-                    LoginScreen(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp),
-                        onLogin = { user: LoginRequest ->
-                            auth.login(
-                                user = user,
-                                onFailure = {
-                                    Toast.makeText(
-                                        this@MainActivity,
-                                        "Login failed",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                },
-                                onSuccess = {
-                                    navController.navigate(Screen.HOME.name)
-                                }
-                            )
-                        }
-                    )
-                }
+                
                 composable(route = Screen.HOME.name) {
                     auth.currentUser.value?.let { user ->
                         HomeScreen(
@@ -140,68 +153,77 @@ class MainActivity : ComponentActivity() {
                                 .fillMaxSize()
                                 .padding(16.dp),
                             user = user,
-                            onEnergyConsumptionClick = { navController.navigate(Screen.ENERGY_CONSUMPTION.name) }
+                            onEnergyConsumptionClick = { navController.navigate(Screen.DEVICES.name) }
                         )
                     }
                 }
-                composable(route = Screen.ENERGY_CONSUMPTION.name) {
-                    EnergyConsumptionScreen(
-                        modifier = Modifier.fillMaxSize(),
-                        devices = remember { deviceViewModel.devices },
-                        onClickDevice = {
-                            deviceViewModel.currentDevice.value = it
-                            navController.navigate(Screen.DEVICE_DETAILS.name)
-                        },
-                        onDeleteDevice = { deviceId ->
-                            deviceViewModel.deleteDevice(deviceId)
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Device deleted!",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        },
-                        onCreateDevice = { navController.navigate(Screen.REGISTER_DEVICE.name) }
-                    )
-                }
-                composable(route = Screen.REGISTER_DEVICE.name) {
-                    FormDeviceScreen(
-                        modifier = Modifier.fillMaxSize(),
-                        onSave = { filledDevice ->
-                            deviceViewModel.newDevice(filledDevice)
-                            navController.popBackStack()
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Device saved!",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    )
-                }
-                composable(route = Screen.DEVICE_DETAILS.name) {
-                    DeviceDetailsScreen(
-                        modifier = Modifier.fillMaxSize(),
-                        device = deviceViewModel.currentDevice.value,
-                        onClickEditDevice = { navController.navigate(Screen.UPDATE_DEVICE.name) }
-                    )
-                }
-                composable(route = Screen.UPDATE_DEVICE.name) {
-                    val currentDevice = deviceViewModel.currentDevice
-                    FormDeviceScreen(
-                        modifier = Modifier.fillMaxSize(),
-                        device = currentDevice,
-                        onSave = { filledDevice ->
-                            deviceViewModel.updateDevice(
-                                currentDevice.value.id,
-                                filledDevice
-                            )
-                            navController.popBackStack()
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Device updated!",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    )
+                
+                navigation(
+                    route = Screen.DEVICES.name,
+                    startDestination = Screen.ENERGY_CONSUMPTION.name
+                ) {
+                    composable(route = Screen.ENERGY_CONSUMPTION.name) {
+                        EnergyConsumptionScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            devices = remember { deviceViewModel.devices },
+                            onClickDevice = {
+                                deviceViewModel.currentDevice.value = it
+                                navController.navigate(Screen.DEVICE_DETAILS.name)
+                            },
+                            onDeleteDevice = { deviceId ->
+                                deviceViewModel.deleteDevice(deviceId)
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "Device deleted!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            },
+                            onCreateDevice = { navController.navigate(Screen.REGISTER_DEVICE.name) }
+                        )
+                    }
+                    
+                    composable(route = Screen.REGISTER_DEVICE.name) {
+                        FormDeviceScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            onSave = { filledDevice ->
+                                deviceViewModel.newDevice(filledDevice)
+                                navController.popBackStack()
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "Device saved!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        )
+                    }
+                    
+                    composable(route = Screen.DEVICE_DETAILS.name) {
+                        DeviceDetailsScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            device = deviceViewModel.currentDevice.value,
+                            onClickEditDevice = { navController.navigate(Screen.UPDATE_DEVICE.name) }
+                        )
+                    }
+                    
+                    composable(route = Screen.UPDATE_DEVICE.name) {
+                        val currentDevice = deviceViewModel.currentDevice
+                        FormDeviceScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            device = currentDevice,
+                            onSave = { filledDevice ->
+                                deviceViewModel.updateDevice(
+                                    currentDevice.value.id,
+                                    filledDevice
+                                )
+                                navController.popBackStack()
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "Device updated!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        )
+                    }
                 }
             }
         }
