@@ -27,108 +27,121 @@ import br.com.ecowatt.ui.screens.FormDeviceScreen
 import br.com.ecowatt.ui.screens.HomeScreen
 import br.com.ecowatt.ui.theme.EcoWattTheme
 import br.com.ecowatt.ui.viewmodel.DeviceViewModel
+import br.com.ecowatt.ui.viewmodel.UserViewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel = viewModels<DeviceViewModel>()
+    private val deviceViewModel = viewModels<DeviceViewModel>()
+    private val userViewModel = viewModels<UserViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            EcoWattApp()
+            EcoWattTheme {
+                EcoWattApp(
+                    deviceViewModel = deviceViewModel.value,
+                    userViewModel = userViewModel.value
+                )
+            }
         }
     }
 
     @Composable
     fun EcoWattApp(
-        navController: NavHostController = rememberNavController()
+        navController: NavHostController = rememberNavController(),
+        deviceViewModel: DeviceViewModel,
+        userViewModel: UserViewModel
     ) {
         val backStackEntry = navController.currentBackStackEntryAsState()
         val currentScreen =
             Screen.valueOf(backStackEntry.value?.destination?.route ?: Screen.HOME.name)
 
-        EcoWattTheme {
-            Scaffold(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .statusBarsPadding(),
-                topBar = {
-                    EcoWattTopBar(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        canNavigateBack = navController.previousBackStackEntry != null,
-                        navigateUp = { navController.navigateUp() },
-                        currentScreen = currentScreen
+        Scaffold(
+            modifier = Modifier
+                .fillMaxSize()
+                .statusBarsPadding(),
+            topBar = {
+                EcoWattTopBar(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    canNavigateBack = navController.previousBackStackEntry != null,
+                    navigateUp = { navController.navigateUp() },
+                    currentScreen = currentScreen
+                )
+            }
+        ) { innerPadding ->
+            NavHost(
+                navController = navController,
+                startDestination = Screen.HOME.name,
+                modifier = Modifier.padding(innerPadding)
+            ) {
+                composable(route = Screen.HOME.name) {
+                    HomeScreen(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        user = userViewModel.user.value,
+                        navigateToEnergyConsumption = { navController.navigate(Screen.ENERGY_CONSUMPTION.name) }
                     )
                 }
-            ) { innerPadding ->
-                NavHost(
-                    navController = navController,
-                    startDestination = Screen.HOME.name,
-                    modifier = Modifier.padding(innerPadding)
-                ) {
-                    composable(route = Screen.HOME.name) {
-                        HomeScreen(
-                            modifier = Modifier.fillMaxSize(),
-                            navigateToEnergyConsumption = { navController.navigate(Screen.ENERGY_CONSUMPTION.name) }
-                        )
-                    }
-                    composable(route = Screen.ENERGY_CONSUMPTION.name) {
-                        EnergyConsumptionScreen(
-                            modifier = Modifier.fillMaxSize(),
-                            devices = remember { viewModel.value.devices },
-                            onClickDevice = {
-                                viewModel.value.currentDevice.value = it
-                                navController.navigate(Screen.DEVICE_DETAILS.name)
-                            },
-                            onDeleteDevice = { deviceId ->
-                                viewModel.value.deleteDevice(deviceId)
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    "Device deleted!",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            },
-                            onCreateDevice = { navController.navigate(Screen.REGISTER_DEVICE.name) }
-                        )
-                    }
-                    composable(route = Screen.REGISTER_DEVICE.name) {
-                        FormDeviceScreen(
-                            modifier = Modifier.fillMaxSize(),
-                            onSave = { filledDevice ->
-                                viewModel.value.newDevice(filledDevice)
-                                navController.popBackStack()
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    "Device saved!",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        )
-                    }
-                    composable(route = Screen.DEVICE_DETAILS.name) {
-                        DeviceDetailsScreen(
-                            modifier = Modifier.fillMaxSize(),
-                            device = viewModel.value.currentDevice.value,
-                            onClickEditDevice = { navController.navigate(Screen.UPDATE_DEVICE.name) }
-                        )
-                    }
-                    composable(route = Screen.UPDATE_DEVICE.name) {
-                        val currentDevice = viewModel.value.currentDevice
-                        FormDeviceScreen(
-                            modifier = Modifier.fillMaxSize(),
-                            device = currentDevice,
-                            onSave = { filledDevice ->
-                                viewModel.value.updateDevice(currentDevice.value.id, filledDevice)
-                                navController.popBackStack()
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    "Device updated!",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        )
-                    }
+                composable(route = Screen.ENERGY_CONSUMPTION.name) {
+                    EnergyConsumptionScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        devices = remember { deviceViewModel.devices },
+                        onClickDevice = {
+                            deviceViewModel.currentDevice.value = it
+                            navController.navigate(Screen.DEVICE_DETAILS.name)
+                        },
+                        onDeleteDevice = { deviceId ->
+                            deviceViewModel.deleteDevice(deviceId)
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Device deleted!",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        },
+                        onCreateDevice = { navController.navigate(Screen.REGISTER_DEVICE.name) }
+                    )
+                }
+                composable(route = Screen.REGISTER_DEVICE.name) {
+                    FormDeviceScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        onSave = { filledDevice ->
+                            deviceViewModel.newDevice(filledDevice)
+                            navController.popBackStack()
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Device saved!",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    )
+                }
+                composable(route = Screen.DEVICE_DETAILS.name) {
+                    DeviceDetailsScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        device = deviceViewModel.currentDevice.value,
+                        onClickEditDevice = { navController.navigate(Screen.UPDATE_DEVICE.name) }
+                    )
+                }
+                composable(route = Screen.UPDATE_DEVICE.name) {
+                    val currentDevice = deviceViewModel.currentDevice
+                    FormDeviceScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        device = currentDevice,
+                        onSave = { filledDevice ->
+                            deviceViewModel.updateDevice(
+                                currentDevice.value.id,
+                                filledDevice
+                            )
+                            navController.popBackStack()
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Device updated!",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    )
                 }
             }
         }
