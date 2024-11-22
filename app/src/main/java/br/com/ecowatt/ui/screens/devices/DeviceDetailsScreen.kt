@@ -1,28 +1,32 @@
 package br.com.ecowatt.ui.screens.devices
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
 import br.com.ecowatt.models.device.Device
 import br.com.ecowatt.models.device.DeviceSampleData
 import br.com.ecowatt.ui.components.device.ConsumptionLimitInfo
 import br.com.ecowatt.ui.components.device.ConsumptionReportsInfo
-import br.com.ecowatt.ui.components.device.DeviceHeader
 import br.com.ecowatt.ui.components.device.EnergyConsumptionInfo
-import br.com.ecowatt.ui.theme.Azure500
-import br.com.ecowatt.ui.theme.Neutral1000
+import br.com.ecowatt.ui.theme.*
 
 @Composable
-fun DeviceDetailsScreen(
+internal fun DeviceDetailsScreen(
     modifier: Modifier = Modifier,
     device: Device,
     onClickEditDevice: () -> Unit
@@ -34,10 +38,39 @@ fun DeviceDetailsScreen(
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            DeviceHeader(
-                modifier = Modifier.fillMaxWidth(),
-                device = device
-            )
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = modifier
+                    .background(
+                        color = Neutral1000,
+                        shape = RoundedCornerShape(16.dp)
+                    )
+                    .border(
+                        color = Gray600,
+                        shape = RoundedCornerShape(16.dp),
+                        width = 2.dp
+                    )
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = device.location,
+                    color = Gray500,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Normal,
+                    letterSpacing = 0.5.sp,
+                    lineHeight = 32.sp * 0.8
+                )
+
+                Text(
+                    text = device.name,
+                    color = Gray800,
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    letterSpacing = 0.5.sp,
+                    lineHeight = 32.sp * 1.5
+                )
+            }
+            
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -46,10 +79,12 @@ fun DeviceDetailsScreen(
                     modifier = Modifier.fillMaxWidth(),
                     device = device
                 )
+                
                 ConsumptionLimitInfo(
                     modifier = Modifier.fillMaxWidth(),
                     device = device
                 )
+                
                 ConsumptionReportsInfo(
                     modifier = Modifier.fillMaxWidth(),
                     device = device,
@@ -57,6 +92,7 @@ fun DeviceDetailsScreen(
                 )
             }
         }
+        
         FloatingActionButton(
             onClick = onClickEditDevice,
             containerColor = Azure500,

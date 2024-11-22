@@ -18,7 +18,7 @@ import br.com.ecowatt.dto.auth.LoginRequest
 import br.com.ecowatt.ui.components.Button
 
 @Composable
-fun LoginScreen(
+internal fun LoginScreen(
     modifier: Modifier = Modifier,
     onLogin: (loginRequest: LoginRequest) -> Unit
 ) {

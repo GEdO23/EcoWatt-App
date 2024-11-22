@@ -1,4 +1,4 @@
-package br.com.ecowatt.ui.components
+package br.com.ecowatt.ui.components.navigation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -23,7 +23,7 @@ import br.com.ecowatt.ui.theme.Gray800
  * @param currentScreen The current [Screen].
  */
 @Composable
-fun EcoWattTopBar(
+internal fun EcoWattTopBar(
     modifier: Modifier = Modifier,
     canNavigateBack: Boolean = false,
     navigateUp: () -> Unit = {},

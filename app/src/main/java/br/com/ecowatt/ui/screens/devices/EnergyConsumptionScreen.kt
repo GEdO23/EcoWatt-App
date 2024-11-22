@@ -18,14 +18,14 @@ import androidx.compose.ui.unit.dp
 import br.com.ecowatt.R
 import br.com.ecowatt.models.device.Device
 import br.com.ecowatt.models.device.DeviceSampleData
-import br.com.ecowatt.ui.components.device.EmptyDeviceListAlert
-import br.com.ecowatt.ui.components.device.EnergyConsumptionList
+import br.com.ecowatt.ui.components.device.list.EmptyDeviceListAlert
+import br.com.ecowatt.ui.components.device.list.EnergyConsumptionList
 import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.EcoWattTheme
 import br.com.ecowatt.ui.theme.Neutral1000
 
 @Composable
-fun EnergyConsumptionScreen(
+internal fun EnergyConsumptionScreen(
     modifier: Modifier = Modifier,
     devices: List<Device>,
     onClickDevice: (deviceClicked: Device) -> Unit,

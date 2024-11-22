@@ -22,7 +22,7 @@ import br.com.ecowatt.ui.theme.Gray600
 import br.com.ecowatt.ui.theme.Gray800
 
 @Composable
-fun HomeScreen(
+internal fun HomeScreen(
     modifier: Modifier = Modifier,
     user: User,
     onEnergyConsumptionClick: () -> Unit
