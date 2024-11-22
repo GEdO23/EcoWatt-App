@@ -10,12 +10,22 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 
-class UserRepository {
+/**
+ * Repository class for handling user authentication.
+ */
+class AuthRepository {
     private val gson = Gson()
     private val httpClient = OkHttpClient()
 
     private val apiKey = "AIzaSyDPN4xpjTmo-eNuJs-4UnItxMGUId4ePwQ"
 
+    /**
+     * Signs up a new user.
+     *
+     * @param user The sign-up request data.
+     * @param onRequestFailure Callback function to handle request failure.
+     * @param onRequestSuccess Callback function to handle request success.
+     */
     fun signUp(
         user: SignupRequest,
         onRequestFailure: (e: IOException) -> Unit,
@@ -53,7 +63,14 @@ class UserRepository {
         httpClient.newCall(request)
             .enqueue(response)
     }
-
+    
+    /**
+     * Logs in an existing user.
+     *
+     * @param user The login request data.
+     * @param onRequestFailure Callback function to handle request failure.
+     * @param onRequestSuccess Callback function to handle request success.
+     */
     fun login(
         user: LoginRequest,
         onRequestFailure: (e: IOException) -> Unit,
