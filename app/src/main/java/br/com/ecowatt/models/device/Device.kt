@@ -36,6 +36,10 @@ data class Device(
     fun getNumberOfReports(): UInt {
         return alerts?.size?.toUInt() ?: 0u
     }
+
+    fun hasUnresolvedAlerts(): Boolean {
+        return getNumberOfReports() > 0u
+    }
 }
 
 /**

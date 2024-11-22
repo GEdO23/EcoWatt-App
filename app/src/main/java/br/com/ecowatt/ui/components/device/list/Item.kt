@@ -1,7 +1,10 @@
 package br.com.ecowatt.ui.components.device.list
 
 import androidx.compose.foundation.clickable
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -11,7 +14,6 @@ import br.com.ecowatt.R
 import br.com.ecowatt.models.device.Device
 import br.com.ecowatt.models.device.DeviceSampleData
 import br.com.ecowatt.ui.components.device.ConsumptionLevelIcon
-import br.com.ecowatt.ui.theme.*
 
 /**
  * Component to display an energy consumption list item.
@@ -32,7 +34,6 @@ internal fun EnergyConsumptionListItem(
 ) {
     ListItem(
         modifier = Modifier.clickable { onClick(device) },
-        colors = getListItemColors(isConsumptionHigh),
         leadingContent = {
             ConsumptionLevelIcon(isConsumptionHigh = isConsumptionHigh)
         },
@@ -57,46 +58,6 @@ internal fun EnergyConsumptionListItem(
             }
         }
     )
-}
-
-/**
- * Function to get the colors for the list item based on consumption level.
- *
- * @param isConsumptionHigh indicates if the device's energy consumption is high.
- * @return [ListItemColors] the colors to be used for the list item.
- * @see Device
- * @see EnergyConsumptionListItem
- * @see ListItemColors
- */
-private fun getListItemColors(
-    isConsumptionHigh: Boolean
-): ListItemColors {
-    val listItemColorsLowConsumption = ListItemColors(
-        containerColor = Neutral1000,
-        headlineColor = Gray800,
-        leadingIconColor = Gray600,
-        overlineColor = Gray600,
-        supportingTextColor = Gray600,
-        trailingIconColor = Gray600,
-        disabledHeadlineColor = Gray600,
-        disabledLeadingIconColor = Gray400,
-        disabledTrailingIconColor = Gray400
-    )
-
-    val listItemColorsHighConsumption = ListItemColors(
-        containerColor = Red100,
-        headlineColor = Red400,
-        leadingIconColor = Red400,
-        overlineColor = Red400,
-        supportingTextColor = Red400,
-        trailingIconColor = Red400,
-        disabledHeadlineColor = Red400,
-        disabledLeadingIconColor = Red400,
-        disabledTrailingIconColor = Red400
-    )
-
-    return if (isConsumptionHigh) listItemColorsHighConsumption
-    else listItemColorsLowConsumption
 }
 
 @Preview

@@ -1,7 +1,10 @@
 package br.com.ecowatt.ui.components.navigation
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -13,7 +16,6 @@ import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
 import br.com.ecowatt.ui.navigation.Screen
 import br.com.ecowatt.ui.theme.EcoWattTheme
-import br.com.ecowatt.ui.theme.Gray800
 
 /**
  * Component that displays the top bar of the EcoWatt app.
@@ -35,11 +37,7 @@ internal fun EcoWattTopBar(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         if (canNavigateBack) {
-            IconButton(
-                onClick = navigateUp,
-                colors = IconButtonDefaults.iconButtonColors()
-                    .copy(contentColor = Gray800)
-            ) {
+            IconButton(onClick = navigateUp) {
                 Icon(
                     painter = painterResource(R.drawable.ic_arrow_right),
                     contentDescription = stringResource(R.string.ic_description_go_back)
@@ -49,7 +47,6 @@ internal fun EcoWattTopBar(
         currentScreen.title?.let { title ->
             Text(
                 text = stringResource(title),
-                color = Gray800,
                 fontSize = 48.sp,
                 fontWeight = FontWeight.SemiBold,
                 letterSpacing = 0.5.sp,

@@ -1,13 +1,12 @@
 package br.com.ecowatt.ui.components.device
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.ecowatt.R
 import br.com.ecowatt.ui.components.CustomIcon
 import br.com.ecowatt.ui.components.IconSize
-import br.com.ecowatt.ui.theme.Azure500
-import br.com.ecowatt.ui.theme.Red400
 
 /**
  * Component that displays an icon representing the consumption level.
@@ -21,11 +20,16 @@ import br.com.ecowatt.ui.theme.Red400
 @Composable
 internal fun ConsumptionLevelIcon(
     iconSize: IconSize = IconSize.MD,
-    isConsumptionHigh: Boolean = false
+    isConsumptionHigh: Boolean
 ) {
+    val containerColor =
+        if (isConsumptionHigh) MaterialTheme.colorScheme.onTertiaryContainer
+        else MaterialTheme.colorScheme.primaryContainer
+    
     CustomIcon(
         size = iconSize,
-        color = if (isConsumptionHigh) Red400 else Azure500,
+        color = MaterialTheme.colorScheme.onPrimaryContainer,
+        containerColor = containerColor,
         drawable = R.drawable.ic_energy,
         description = stringResource(R.string.ic_description_consumption_level)
     )
@@ -43,11 +47,16 @@ internal fun ConsumptionLevelIcon(
 @Composable
 internal fun ConsumptionReportIcon(
     iconSize: IconSize = IconSize.MD,
-    hasUnresolvedAlerts: Boolean = false
+    hasUnresolvedAlerts: Boolean
 ) {
+    val containerColor =
+        if (hasUnresolvedAlerts) MaterialTheme.colorScheme.onTertiaryContainer
+        else MaterialTheme.colorScheme.primaryContainer
+    
     CustomIcon(
         size = iconSize,
-        color = if (hasUnresolvedAlerts) Red400 else Azure500,
+        color = MaterialTheme.colorScheme.onPrimaryContainer,
+        containerColor = containerColor,
         drawable = R.drawable.ic_priority_high,
         description = stringResource(R.string.ic_description_consumption_report)
     )

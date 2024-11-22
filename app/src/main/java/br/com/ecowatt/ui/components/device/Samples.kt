@@ -23,7 +23,7 @@ internal object Samples {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            ConsumptionLevelIcon()
+            ConsumptionLevelIcon(isConsumptionHigh = device.isConsumptionLevelHigh())
 
             Text("${device.getCurrentConsumptionLevel()} watts")
         }
@@ -38,7 +38,7 @@ internal object Samples {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            ConsumptionReportIcon()
+            ConsumptionReportIcon(hasUnresolvedAlerts = device.hasUnresolvedAlerts())
 
             Text("${device.getNumberOfReports()} reports")
         }

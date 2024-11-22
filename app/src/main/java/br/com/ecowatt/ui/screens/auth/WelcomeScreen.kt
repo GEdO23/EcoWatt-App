@@ -1,6 +1,7 @@
 package br.com.ecowatt.ui.screens.auth
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,8 +13,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
 import br.com.ecowatt.ui.components.CustomButton
-import br.com.ecowatt.ui.theme.Gray600
-import br.com.ecowatt.ui.theme.Gray800
 
 @Composable
 internal fun WelcomeScreen(
@@ -31,15 +30,14 @@ internal fun WelcomeScreen(
             Text(
                 text = stringResource(R.string.app_name),
                 fontSize = 48.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Gray800
+                fontWeight = FontWeight.SemiBold
             )
 
             Text(
                 text = stringResource(R.string.app_description),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Normal,
-                color = Gray600
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
 

@@ -21,9 +21,7 @@ import br.com.ecowatt.models.device.Device
 import br.com.ecowatt.models.device.DeviceSampleData
 import br.com.ecowatt.models.device.emptyDevice
 import br.com.ecowatt.ui.components.device.DeviceForm
-import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.EcoWattTheme
-import br.com.ecowatt.ui.theme.Neutral1000
 
 @Composable
 internal fun FormDeviceScreen(
@@ -41,9 +39,7 @@ internal fun FormDeviceScreen(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp),
-            onClick = { onSave(device.value) },
-            containerColor = Azure500,
-            contentColor = Neutral1000
+            onClick = { onSave(device.value) }
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_save),

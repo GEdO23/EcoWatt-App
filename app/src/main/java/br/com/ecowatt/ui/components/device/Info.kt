@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,11 +22,6 @@ import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
 import br.com.ecowatt.models.device.Device
 import br.com.ecowatt.models.device.DeviceSampleData
-import br.com.ecowatt.ui.components.CustomIcon
-import br.com.ecowatt.ui.theme.Azure500
-import br.com.ecowatt.ui.theme.Neutral1000
-import br.com.ecowatt.ui.theme.Red100
-import br.com.ecowatt.ui.theme.Red400
 
 /**
  * A composable function that displays the energy consumption information of a device.
@@ -38,23 +35,20 @@ internal fun EnergyConsumptionInfo(
     modifier: Modifier = Modifier,
     device: Device
 ) {
-    val contentColor = if (device.isConsumptionLevelHigh()) Red400 else Azure500
-    val backgroundColor = if (device.isConsumptionLevelHigh()) Red100 else Neutral1000
+    val contentColor =
+        if (device.isConsumptionLevelHigh()) MaterialTheme.colorScheme.onTertiaryContainer
+        else MaterialTheme.colorScheme.onSecondaryContainer
     val shape = RoundedCornerShape(24.dp)
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .background(color = backgroundColor, shape = shape)
+            .background(color = Color.Unspecified, shape = shape)
             .border(width = 2.dp, color = contentColor, shape = shape)
             .padding(16.dp)
     ) {
-        CustomIcon(
-            color = contentColor,
-            drawable = R.drawable.ic_energy,
-            description = stringResource(R.string.ic_description_consumption_level)
-        )
+        ConsumptionLevelIcon(isConsumptionHigh = device.isConsumptionLevelHigh())
 
         Text(
             text = stringResource(
@@ -62,7 +56,6 @@ internal fun EnergyConsumptionInfo(
                 device.getCurrentConsumptionLevel(),
                 stringResource(R.string.energy_unit)
             ),
-            color = contentColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
             letterSpacing = 0.5.sp
@@ -84,31 +77,27 @@ internal fun ConsumptionReportsInfo(
     device: Device,
     onClick: () -> Unit
 ) {
-    val contentColor = if (device.isConsumptionLevelHigh()) Red400 else Azure500
-    val backgroundColor = if (device.isConsumptionLevelHigh()) Red100 else Neutral1000
+    val contentColor =
+        if (device.hasUnresolvedAlerts()) MaterialTheme.colorScheme.onTertiaryContainer
+        else MaterialTheme.colorScheme.onSecondaryContainer
     val shape = RoundedCornerShape(24.dp)
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .background(color = backgroundColor, shape = shape)
+            .background(color =  Color.Unspecified, shape = shape)
             .border(width = 2.dp, color = contentColor, shape = shape)
             .padding(16.dp)
             .clickable { onClick() }
     ) {
-        CustomIcon(
-            color = contentColor,
-            drawable = R.drawable.ic_priority_high,
-            description = stringResource(R.string.ic_description_consumption_report)
-        )
+        ConsumptionReportIcon(hasUnresolvedAlerts = device.hasUnresolvedAlerts())
 
         Text(
             text = stringResource(
                 R.string.device_info_consumption_reports_text,
                 device.getNumberOfReports()
             ),
-            color = contentColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
             letterSpacing = 0.5.sp
@@ -128,23 +117,21 @@ internal fun ConsumptionLimitInfo(
     modifier: Modifier = Modifier,
     device: Device
 ) {
-    val contentColor = if (device.isConsumptionLevelHigh()) Red400 else Azure500
-    val backgroundColor = if (device.isConsumptionLevelHigh()) Red100 else Neutral1000
+    val contentColor =
+        if (device.isConsumptionLevelHigh()) MaterialTheme.colorScheme.onTertiaryContainer
+        else MaterialTheme.colorScheme.onSecondaryContainer
+
     val shape = RoundedCornerShape(24.dp)
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .background(color = backgroundColor, shape = shape)
+            .background(color =  Color.Unspecified, shape = shape)
             .border(width = 2.dp, color = contentColor, shape = shape)
             .padding(16.dp)
     ) {
-        CustomIcon(
-            color = contentColor,
-            drawable = R.drawable.ic_energy,
-            description = stringResource(R.string.ic_description_consumption_level)
-        )
+        ConsumptionLevelIcon(isConsumptionHigh = device.isConsumptionLevelHigh())
 
         Text(
             text = stringResource(
@@ -152,7 +139,6 @@ internal fun ConsumptionLimitInfo(
                 device.consumptionLimit,
                 stringResource(R.string.energy_unit)
             ),
-            color = contentColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
             letterSpacing = 0.5.sp

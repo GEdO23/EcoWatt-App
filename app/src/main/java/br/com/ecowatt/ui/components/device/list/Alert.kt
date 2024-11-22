@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,7 +18,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
-import br.com.ecowatt.ui.theme.Gray800
 
 /**
  * Composable function that displays an alert for an empty consumption list.
@@ -46,7 +46,7 @@ fun EmptyDeviceListAlert(modifier: Modifier = Modifier) {
             Text(
                 text = stringResource(R.string.empty_device_list_alert_title),
                 textAlign = TextAlign.Center,
-                color = Gray800,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.SemiBold
             )
@@ -54,7 +54,7 @@ fun EmptyDeviceListAlert(modifier: Modifier = Modifier) {
             Text(
                 text = stringResource(R.string.empty_device_list_alert_subtitle),
                 textAlign = TextAlign.Center,
-                color = Gray800,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Normal
             )
