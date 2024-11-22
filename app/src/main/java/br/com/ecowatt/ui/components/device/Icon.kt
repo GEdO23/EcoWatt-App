@@ -20,10 +20,8 @@ import br.com.ecowatt.ui.theme.Red400
 
 /**
  * Enum class representing the types of icons used in the consumption components.
- * 
+ *
  * @property CONSUMPTION_LEVEL
- * 
- * @sample br.com.ecowatt.ui.components.consumption.ConsumptionLimitInfo
  */
 enum class IconType {
     /** Icon representing the consumption level */
@@ -40,7 +38,7 @@ enum class IconType {
  * @param isConsumptionHigh indicates if the consumption is high, default is false.
  * @see IconSize
  * @see ConsumptionReportIcon
- * @sample br.com.ecowatt.samples.components.DeviceComponentSamples.ConsumptionLevelIcon
+ * @sample br.com.ecowatt.ui.components.device.Samples.ConsumptionLevelIconSample
  */
 @Composable
 fun ConsumptionLevelIcon(
@@ -73,7 +71,7 @@ fun ConsumptionLevelIcon(
  * @param isConsumptionHigh indicates if the consumption is high, default is false.
  * @see IconSize
  * @see ConsumptionLevelIcon
- * @sample br.com.ecowatt.samples.components.DeviceComponentSamples.ConsumptionReportIcon
+ * @sample br.com.ecowatt.ui.components.device.Samples.ConsumptionReportIconSample
  */
 @Composable
 fun ConsumptionReportIcon(

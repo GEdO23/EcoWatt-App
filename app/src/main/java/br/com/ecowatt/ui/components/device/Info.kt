@@ -3,7 +3,10 @@ package br.com.ecowatt.ui.components.device
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -26,9 +29,10 @@ import br.com.ecowatt.ui.theme.Neutral1000
  *
  * @param modifier Modifier to be applied to the container.
  * @param device The device whose consumption level is to be displayed.
+ * @sample Samples.InfoListSample
  */
 @Composable
-fun EnergyConsumptionInfo(
+internal fun EnergyConsumptionInfo(
     modifier: Modifier = Modifier,
     device: Device
 ) {
@@ -58,9 +62,10 @@ fun EnergyConsumptionInfo(
  * @param modifier The modifier to be applied to the container.
  * @param device The device whose consumption reports are to be displayed.
  * @param onClick Function to be executed when the container is clicked.
+ * @sample Samples.InfoListSample
  */
 @Composable
-fun ConsumptionReportsInfo(
+internal fun ConsumptionReportsInfo(
     modifier: Modifier = Modifier,
     device: Device,
     onClick: () -> Unit
@@ -97,9 +102,10 @@ fun ConsumptionReportsInfo(
  *
  * @param modifier The modifier to be applied to the container.
  * @param device The device whose consumption limit is to be displayed.
+ * @sample Samples.InfoListSample
  */
 @Composable
-fun ConsumptionLimitInfo(
+internal fun ConsumptionLimitInfo(
     modifier: Modifier = Modifier,
     device: Device
 ) {
@@ -123,29 +129,30 @@ fun ConsumptionLimitInfo(
     }
 }
 
-@Preview(showSystemUi = true, showBackground = true)
+@Preview
 @Composable
-private fun InfoListPreview() {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = Modifier
-            .statusBarsPadding()
-            .padding(16.dp)
-    ) {
-        EnergyConsumptionInfo(
-            modifier = Modifier.fillMaxWidth(),
-            device = DeviceSampleData.lowConsumptionLevelDevice
-        )
+private fun EnergyConsumptionInfoPreview() {
+    EnergyConsumptionInfo(
+        modifier = Modifier.fillMaxWidth(),
+        device = DeviceSampleData.lowConsumptionLevelDevice
+    )
+}
 
-        ConsumptionLimitInfo(
-            modifier = Modifier.fillMaxWidth(),
-            device = DeviceSampleData.lowConsumptionLevelDevice
-        )
+@Preview
+@Composable
+private fun ConsumptionLimitInfoPreview() {
+    ConsumptionLimitInfo(
+        modifier = Modifier.fillMaxWidth(),
+        device = DeviceSampleData.lowConsumptionLevelDevice
+    )
+}
 
-        ConsumptionReportsInfo(
-            modifier = Modifier.fillMaxWidth(),
-            device = DeviceSampleData.lowConsumptionLevelDevice,
-            onClick = {}
-        )
-    }
+@Preview
+@Composable
+private fun ConsumptionReportsInfoPreview() {
+    ConsumptionReportsInfo(
+        modifier = Modifier.fillMaxWidth(),
+        device = DeviceSampleData.lowConsumptionLevelDevice,
+        onClick = {}
+    )
 }

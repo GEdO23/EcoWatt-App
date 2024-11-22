@@ -18,7 +18,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import br.com.ecowatt.dto.auth.LoginRequest
 import br.com.ecowatt.dto.auth.SignupRequest
-import br.com.ecowatt.ui.components.EcoWattTopBar
+import br.com.ecowatt.ui.components.navigation.EcoWattTopBar
 import br.com.ecowatt.ui.navigation.Screen
 import br.com.ecowatt.ui.screens.HomeScreen
 import br.com.ecowatt.ui.screens.auth.LoginScreen

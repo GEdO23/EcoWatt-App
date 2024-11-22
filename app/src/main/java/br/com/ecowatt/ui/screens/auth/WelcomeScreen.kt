@@ -14,7 +14,7 @@ import br.com.ecowatt.ui.theme.Gray600
 import br.com.ecowatt.ui.theme.Gray800
 
 @Composable
-fun WelcomeScreen(
+internal fun WelcomeScreen(
     modifier: Modifier = Modifier,
     onSignup: () -> Unit,
     onLogin: () -> Unit

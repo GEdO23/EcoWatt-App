@@ -18,7 +18,7 @@ import br.com.ecowatt.dto.auth.SignupRequest
 import br.com.ecowatt.ui.components.Button
 
 @Composable
-fun SignupScreen(
+internal fun SignupScreen(
     modifier: Modifier = Modifier,
     onSignup: (signupRequest: SignupRequest) -> Unit
 ) {

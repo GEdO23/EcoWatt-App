@@ -25,14 +25,17 @@ import br.com.ecowatt.ui.theme.EcoWattTheme
 import br.com.ecowatt.ui.theme.Neutral1000
 
 @Composable
-fun FormDeviceScreen(
+internal fun FormDeviceScreen(
     modifier: Modifier = Modifier,
     device: MutableState<Device> = remember { mutableStateOf(emptyDevice()) },
     onSave: (filledDevice: Device) -> Unit
 ) {
     Box(modifier = modifier) {
-        DeviceForm(modifier = Modifier.padding(16.dp))
-        
+        DeviceForm(
+            modifier = Modifier.padding(16.dp),
+            device = device
+        )
+
         FloatingActionButton(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
