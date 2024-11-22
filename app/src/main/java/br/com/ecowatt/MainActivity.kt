@@ -25,6 +25,7 @@ import br.com.ecowatt.ui.screens.DeviceDetailsScreen
 import br.com.ecowatt.ui.screens.EnergyConsumptionScreen
 import br.com.ecowatt.ui.screens.FormDeviceScreen
 import br.com.ecowatt.ui.screens.HomeScreen
+import br.com.ecowatt.ui.screens.user.SignupScreen
 import br.com.ecowatt.ui.theme.EcoWattTheme
 import br.com.ecowatt.ui.viewmodel.DeviceViewModel
 import br.com.ecowatt.ui.viewmodel.UserViewModel
@@ -72,9 +73,32 @@ class MainActivity : ComponentActivity() {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = Screen.HOME.name,
+                startDestination = Screen.SIGNUP.name,
                 modifier = Modifier.padding(innerPadding)
             ) {
+                composable(route = Screen.SIGNUP.name) {
+                    SignupScreen(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        user = userViewModel.user,
+                        onSignup = {
+                            userViewModel.signUp(
+                                filledUser = userViewModel.user.value,
+                                onFailure = {
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "Signup failed",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                },
+                                onSuccess = {
+                                    navController.navigate(Screen.HOME.name)
+                                }
+                            )
+                        }
+                    )
+                }
                 composable(route = Screen.HOME.name) {
                     HomeScreen(
                         modifier = Modifier

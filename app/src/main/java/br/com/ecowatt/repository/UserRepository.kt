@@ -34,7 +34,11 @@ class UserRepository {
             }
 
             override fun onResponse(call: Call, response: Response) {
-                onRequestSuccess()
+                if (response.isSuccessful) {
+                    onRequestSuccess()
+                } else {
+                    onRequestFailure(IOException(response.message))
+                }
             }
         }
 
