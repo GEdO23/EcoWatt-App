@@ -1,5 +1,16 @@
 package br.com.ecowatt.ui.navigation
 
+import androidx.annotation.StringRes
+import br.com.ecowatt.R
+import br.com.ecowatt.ui.navigation.Screen.DEVICE_DETAILS
+import br.com.ecowatt.ui.navigation.Screen.ENERGY_CONSUMPTION
+import br.com.ecowatt.ui.navigation.Screen.HOME
+import br.com.ecowatt.ui.navigation.Screen.LOGIN
+import br.com.ecowatt.ui.navigation.Screen.REGISTER_DEVICE
+import br.com.ecowatt.ui.navigation.Screen.SIGNUP
+import br.com.ecowatt.ui.navigation.Screen.UPDATE_DEVICE
+import br.com.ecowatt.ui.navigation.Screen.WELCOME
+
 /**
  * Enum class representing the different screens in the EcoWatt app.
  *
@@ -16,7 +27,7 @@ package br.com.ecowatt.ui.navigation
  * @property title The title of the screen.
  */
 enum class Screen(
-    val title: String? = null,
+    @StringRes val title: Int? = null
 ) {
     /**
      * On boarding [NavGraph][androidx.navigation.NavGraph].
@@ -31,17 +42,17 @@ enum class Screen(
     /**
      * Sign-up screen.
      */
-    SIGNUP("Sign up"),
+    SIGNUP(R.string.screen_title_signup),
 
     /**
      * Login screen.
      */
-    LOGIN("Login"),
+    LOGIN(R.string.screen_title_login),
 
     /**
      * Home screen.
      * */
-    HOME("Home"),
+    HOME(R.string.screen_title_home),
     
     /**
      * Devices CRUD [NavGraph][androidx.navigation.NavGraph].
@@ -56,7 +67,7 @@ enum class Screen(
     /**
      * Screen for registering a new device.
      * */
-    REGISTER_DEVICE("Register device"),
+    REGISTER_DEVICE(R.string.screen_title_register_device),
 
     /**
      * Screen for displaying device details.
@@ -66,5 +77,5 @@ enum class Screen(
     /**
      * Screen for updating an device.
      */
-    UPDATE_DEVICE("Update device")
+    UPDATE_DEVICE(R.string.screen_title_update_device)
 }

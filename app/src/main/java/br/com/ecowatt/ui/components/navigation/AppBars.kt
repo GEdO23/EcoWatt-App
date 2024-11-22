@@ -48,7 +48,7 @@ internal fun EcoWattTopBar(
         }
         currentScreen.title?.let { title ->
             Text(
-                text = title,
+                text = stringResource(title),
                 color = Gray800,
                 fontSize = 48.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -72,11 +72,18 @@ private fun EcoWattTopBarPreview() {
                 EcoWattTopBar(
                     canNavigateBack = true,
                     navigateUp = {},
-                    currentScreen = Screen.ENERGY_CONSUMPTION
+                    currentScreen = Screen.SIGNUP
                 )
             }
         ) { innerPadding ->
-            Column(modifier = Modifier.padding(innerPadding)) {}
+            Column(modifier = Modifier.padding(innerPadding)) {
+                br.com.ecowatt.ui.screens.auth.SignupScreen(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    onSignup = {}
+                )
+            }
         }
     }
 }
