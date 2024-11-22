@@ -1,6 +1,5 @@
-package br.com.ecowatt.samples.models
+package br.com.ecowatt.models.device
 
-import br.com.ecowatt.models.Device
 import java.math.BigDecimal
 
 /**

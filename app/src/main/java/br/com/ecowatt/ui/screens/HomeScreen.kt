@@ -15,7 +15,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
-import br.com.ecowatt.models.User
+import br.com.ecowatt.models.user.User
+import br.com.ecowatt.models.user.UserSampleData
 import br.com.ecowatt.ui.components.Button
 import br.com.ecowatt.ui.theme.Gray600
 import br.com.ecowatt.ui.theme.Gray800
@@ -84,7 +85,7 @@ private fun HomeScreenPreview() {
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        user = br.com.ecowatt.sampledata.UserSampleData.gabriel,
+        user = UserSampleData.gabriel,
         onEnergyConsumptionClick = {}
     )
 }

@@ -1,4 +1,4 @@
-package br.com.ecowatt.navigation
+package br.com.ecowatt.ui.navigation
 
 /**
  * Enum class representing the different screens in the EcoWatt app.

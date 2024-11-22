@@ -1,15 +1,11 @@
 package br.com.ecowatt.repository
 
-import br.com.ecowatt.models.Device
+import br.com.ecowatt.models.device.Device
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import okhttp3.Call
-import okhttp3.Callback
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
 import java.io.IOException
 
 /**

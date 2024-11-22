@@ -11,7 +11,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.ecowatt.models.Device
+import br.com.ecowatt.models.device.Device
+import br.com.ecowatt.models.device.DeviceSampleData
 import br.com.ecowatt.ui.theme.Gray500
 import br.com.ecowatt.ui.theme.Gray600
 import br.com.ecowatt.ui.theme.Gray800
@@ -50,6 +51,7 @@ fun DeviceHeader(
             letterSpacing = 0.5.sp,
             lineHeight = 32.sp * 0.8
         )
+        
         Text(
             text = device.name,
             color = Gray800,
@@ -69,6 +71,6 @@ private fun DeviceHeaderPreview() {
             .fillMaxWidth()
             .statusBarsPadding()
             .padding(16.dp),
-        device = br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice
+        device = DeviceSampleData.lowConsumptionLevelDevice
     )
 }

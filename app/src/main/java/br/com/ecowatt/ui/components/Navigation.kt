@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.ecowatt.R
-import br.com.ecowatt.navigation.Screen
+import br.com.ecowatt.ui.navigation.Screen
 import br.com.ecowatt.ui.theme.EcoWattTheme
 import br.com.ecowatt.ui.theme.Gray800
 

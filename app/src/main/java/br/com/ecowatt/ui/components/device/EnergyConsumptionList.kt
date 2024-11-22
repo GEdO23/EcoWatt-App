@@ -1,4 +1,4 @@
-package br.com.ecowatt.ui.components.consumption
+package br.com.ecowatt.ui.components.device
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,7 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.ecowatt.R
-import br.com.ecowatt.models.Device
+import br.com.ecowatt.models.device.Device
+import br.com.ecowatt.models.device.DeviceSampleData
 import br.com.ecowatt.ui.theme.*
 
 /**
@@ -121,9 +122,9 @@ private fun getListItemColors(
 
 @Preview
 @Composable
-private fun ListItemLowLevelPreview() {
+private fun LowEnergyConsumptionListItemPreview() {
     EnergyConsumptionListItem(
-        device = br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice,
+        device = DeviceSampleData.lowConsumptionLevelDevice,
         isConsumptionHigh = false,
         onClick = {},
         onDeleteDevice = {}
@@ -132,9 +133,9 @@ private fun ListItemLowLevelPreview() {
 
 @Preview
 @Composable
-private fun ListItemHighLevelPreview() {
+private fun HighEnergyConsumptionListItemPreview() {
     EnergyConsumptionListItem(
-        device = br.com.ecowatt.sampledata.DeviceSampleData.highConsumptionLevelDevice,
+        device = DeviceSampleData.highConsumptionLevelDevice,
         isConsumptionHigh = true,
         onClick = {},
         onDeleteDevice = {}
@@ -143,9 +144,9 @@ private fun ListItemHighLevelPreview() {
 
 @Preview
 @Composable
-private fun ListPreview() {
+private fun EnergyConsumptionListPreview() {
     EnergyConsumptionList(
-        devices = br.com.ecowatt.sampledata.DeviceSampleData.listOfDeviceConsumptionLevels,
+        devices = DeviceSampleData.listOfDeviceConsumptionLevels,
         onClick = {},
         onDeleteDevice = {}
     )

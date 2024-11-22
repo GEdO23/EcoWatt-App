@@ -1,5 +1,7 @@
-package br.com.ecowatt.models
+package br.com.ecowatt.models.device
 
+import br.com.ecowatt.models.Alert
+import br.com.ecowatt.models.Consumption
 import java.math.BigDecimal
 
 /**
@@ -12,7 +14,7 @@ import java.math.BigDecimal
  * @property consumptionLimit The maximum allowed consumption for the device.
  * @property consumptions A list of consumption records associated with the device.
  * @property alerts A list of alerts related to the device.
- * @sample br.com.ecowatt.samples.models.DeviceSamples.deviceSample
+ * @sample DeviceSamples.deviceSample
  */
 data class Device(
     val id: String = "",

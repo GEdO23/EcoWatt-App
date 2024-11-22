@@ -1,6 +1,4 @@
-package br.com.ecowatt.sampledata
-
-import br.com.ecowatt.models.User
+package br.com.ecowatt.models.user
 
 object UserSampleData {
     val gabriel = User(

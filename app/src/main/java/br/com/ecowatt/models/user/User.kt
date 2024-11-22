@@ -1,4 +1,4 @@
-package br.com.ecowatt.models
+package br.com.ecowatt.models.user
 
 /**
  * Data class representing a user.

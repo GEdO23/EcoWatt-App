@@ -1,4 +1,4 @@
-package br.com.ecowatt.ui.components.consumption
+package br.com.ecowatt.ui.components.device
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,7 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.ecowatt.R
 import br.com.ecowatt.ui.components.IconSize
-import br.com.ecowatt.ui.components.consumption.IconType.CONSUMPTION_LEVEL
+import br.com.ecowatt.ui.components.device.IconType.CONSUMPTION_LEVEL
 import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.Neutral1000
 import br.com.ecowatt.ui.theme.Red400

@@ -1,4 +1,4 @@
-package br.com.ecowatt.samples.components
+package br.com.ecowatt.ui.components.samples
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
@@ -7,11 +7,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
-import br.com.ecowatt.models.Device
-import br.com.ecowatt.ui.components.consumption.ConsumptionLevelIcon
-import br.com.ecowatt.ui.components.consumption.ConsumptionReportIcon
-import br.com.ecowatt.ui.components.consumption.EmptyDeviceListAlert
-import br.com.ecowatt.ui.components.consumption.EnergyConsumptionList
+import br.com.ecowatt.models.device.Device
+import br.com.ecowatt.ui.components.device.ConsumptionLevelIcon
+import br.com.ecowatt.ui.components.device.ConsumptionReportIcon
+import br.com.ecowatt.ui.components.device.EmptyDeviceListAlert
+import br.com.ecowatt.ui.components.device.EnergyConsumptionList
 
 /**
  * Object containing sample composable functions for device components.
