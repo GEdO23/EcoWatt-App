@@ -8,10 +8,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -24,7 +26,6 @@ import br.com.ecowatt.models.device.DeviceSampleData
 import br.com.ecowatt.ui.components.device.ConsumptionLimitInfo
 import br.com.ecowatt.ui.components.device.ConsumptionReportsInfo
 import br.com.ecowatt.ui.components.device.EnergyConsumptionInfo
-import br.com.ecowatt.ui.theme.*
 
 @Composable
 internal fun DeviceDetailsScreen(
@@ -43,19 +44,19 @@ internal fun DeviceDetailsScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = modifier
                     .background(
-                        color = Neutral1000,
+                        color = Color.Unspecified,
                         shape = RoundedCornerShape(16.dp)
                     )
                     .border(
-                        color = Gray600,
-                        shape = RoundedCornerShape(16.dp),
-                        width = 2.dp
+                        width = 2.dp,
+                        color = MaterialTheme.colorScheme.outline,
+                        shape = RoundedCornerShape(16.dp)
                     )
                     .padding(16.dp)
             ) {
                 Text(
                     text = device.location,
-                    color = Gray500,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Normal,
                     letterSpacing = 0.5.sp,
@@ -64,14 +65,13 @@ internal fun DeviceDetailsScreen(
 
                 Text(
                     text = device.name,
-                    color = Gray800,
                     fontSize = 32.sp,
                     fontWeight = FontWeight.SemiBold,
                     letterSpacing = 0.5.sp,
                     lineHeight = 32.sp * 1.5
                 )
             }
-            
+
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -80,12 +80,12 @@ internal fun DeviceDetailsScreen(
                     modifier = Modifier.fillMaxWidth(),
                     device = device
                 )
-                
+
                 ConsumptionLimitInfo(
                     modifier = Modifier.fillMaxWidth(),
                     device = device
                 )
-                
+
                 ConsumptionReportsInfo(
                     modifier = Modifier.fillMaxWidth(),
                     device = device,
@@ -93,11 +93,9 @@ internal fun DeviceDetailsScreen(
                 )
             }
         }
-        
+
         FloatingActionButton(
             onClick = onClickEditDevice,
-            containerColor = Azure500,
-            contentColor = Neutral1000,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)

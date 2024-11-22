@@ -21,9 +21,7 @@ import br.com.ecowatt.models.device.Device
 import br.com.ecowatt.models.device.DeviceSampleData
 import br.com.ecowatt.ui.components.device.list.EmptyDeviceListAlert
 import br.com.ecowatt.ui.components.device.list.EnergyConsumptionList
-import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.EcoWattTheme
-import br.com.ecowatt.ui.theme.Neutral1000
 
 @Composable
 internal fun EnergyConsumptionScreen(
@@ -38,7 +36,7 @@ internal fun EnergyConsumptionScreen(
             EmptyDeviceListAlert(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 64.dp)
+                    .padding(vertical = 64.dp, horizontal = 32.dp)
                     .alpha(0.8F)
             )
         } else {
@@ -50,8 +48,6 @@ internal fun EnergyConsumptionScreen(
         }
         FloatingActionButton(
             onClick = onCreateDevice,
-            containerColor = Azure500,
-            contentColor = Neutral1000,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)

@@ -4,10 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -19,8 +19,6 @@ import br.com.ecowatt.R
 import br.com.ecowatt.models.user.User
 import br.com.ecowatt.models.user.UserSampleData
 import br.com.ecowatt.ui.components.CustomButton
-import br.com.ecowatt.ui.theme.Gray600
-import br.com.ecowatt.ui.theme.Gray800
 
 @Composable
 internal fun HomeScreen(
@@ -51,14 +49,13 @@ private fun WelcomeUser(userName: String) {
     ) {
         Text(
             text = stringResource(R.string.greetings, userName),
-            color = Gray800,
             fontSize = 32.sp,
             fontWeight = FontWeight.SemiBold
         )
 
         Text(
             text = stringResource(R.string.welcome_back),
-            color = Gray600,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontSize = 24.sp
         )
     }
@@ -72,7 +69,7 @@ private fun AppIcon(size: Dp = 32.dp) {
         modifier = Modifier
             .size(size)
             .background(
-                color = Color(0xFF007FFF),
+                color = MaterialTheme.colorScheme.primary,
                 shape = RoundedCornerShape(size / 6)
             )
             .padding(size / 6)

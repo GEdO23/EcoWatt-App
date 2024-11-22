@@ -1,51 +1,61 @@
 package br.com.ecowatt.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Azure400,
+    onPrimary = Gray800,
+
+    primaryContainer = Azure400,
+    onPrimaryContainer = Gray800,
+
+    secondaryContainer = Gray800,
+    onSecondaryContainer = Azure400,
+
+    tertiaryContainer = Red900,
+    onTertiaryContainer = Red600,
+
+    surface = Gray800,
+    onSurface = Gray200,
+    onSurfaceVariant = Gray400,
+    background = Gray800,
+    onBackground = Gray200,
+
+    outlineVariant = Azure400
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = Azure500,
+    onPrimary = Neutral1000,
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primaryContainer = Azure500,
+    onPrimaryContainer = Neutral1000,
+
+    secondaryContainer = Neutral1000,
+    onSecondaryContainer = Azure500,
+
+    tertiaryContainer = Red100,
+    onTertiaryContainer = Red400,
+
+    surface = Neutral1000,
+    onSurface = Gray800,
+    onSurfaceVariant = Gray600,
+    background = Neutral1000,
+    onBackground = Gray800,
+
+    outlineVariant = Azure500
 )
 
 @Composable
 fun EcoWattTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
