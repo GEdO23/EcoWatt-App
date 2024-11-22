@@ -31,6 +31,7 @@ import br.com.ecowatt.ui.theme.Red400
  *
  * @param modifier A [Modifier] for customizing the layout or behavior of the component.
  * @param device The [Device] object containing the device information.
+ * @sample br.com.ecowatt.ui.components.device.Samples.InfoListSample
  */
 @Composable
 internal fun EnergyConsumptionInfo(
@@ -75,6 +76,7 @@ internal fun EnergyConsumptionInfo(
  * @param modifier A [Modifier] for customizing the layout or behavior of the component.
  * @param device The [Device] object containing the device information.
  * @param onClick The callback to be invoked when the component is clicked.
+ * @sample br.com.ecowatt.ui.components.device.Samples.InfoListSample
  */
 @Composable
 internal fun ConsumptionReportsInfo(
@@ -119,6 +121,7 @@ internal fun ConsumptionReportsInfo(
  *
  * @param modifier A [Modifier] for customizing the layout or behavior of the component.
  * @param device The [Device] object containing the device information.
+ * @sample br.com.ecowatt.ui.components.device.Samples.InfoListSample
  */
 @Composable
 internal fun ConsumptionLimitInfo(

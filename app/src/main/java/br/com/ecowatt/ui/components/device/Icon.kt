@@ -1,6 +1,5 @@
 package br.com.ecowatt.ui.components.device
 
-import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,7 +34,7 @@ internal fun ConsumptionLevelIcon(
 /**
  * Component that displays an icon representing the consumption report.
  *
- * @param size the size of the icon, default is medium.
+ * @param iconSize the size of the icon, default is medium.
  * @param hasUnresolvedAlerts indicates if the consumption is high, default is false.
  * @see IconSize
  * @see ConsumptionLevelIcon
