@@ -19,13 +19,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import br.com.ecowatt.dto.auth.LoginRequest
+import br.com.ecowatt.dto.auth.SignupRequest
 import br.com.ecowatt.navigation.Screen
 import br.com.ecowatt.ui.components.EcoWattTopBar
 import br.com.ecowatt.ui.screens.DeviceDetailsScreen
 import br.com.ecowatt.ui.screens.EnergyConsumptionScreen
 import br.com.ecowatt.ui.screens.FormDeviceScreen
 import br.com.ecowatt.ui.screens.HomeScreen
+import br.com.ecowatt.ui.screens.user.LoginScreen
 import br.com.ecowatt.ui.screens.user.SignupScreen
+import br.com.ecowatt.ui.screens.user.WelcomeScreen
 import br.com.ecowatt.ui.theme.EcoWattTheme
 import br.com.ecowatt.ui.viewmodel.DeviceViewModel
 import br.com.ecowatt.ui.viewmodel.UserViewModel
@@ -73,18 +77,26 @@ class MainActivity : ComponentActivity() {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = Screen.SIGNUP.name,
+                startDestination = Screen.WELCOME.name,
                 modifier = Modifier.padding(innerPadding)
             ) {
+                composable(route = Screen.WELCOME.name) {
+                    WelcomeScreen(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        onSignup = { navController.navigate(Screen.SIGNUP.name) },
+                        onLogin = { navController.navigate(Screen.LOGIN.name) }
+                    )
+                }
                 composable(route = Screen.SIGNUP.name) {
                     SignupScreen(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(16.dp),
-                        user = userViewModel.user,
-                        onSignup = {
+                        onSignup = { user: SignupRequest ->
                             userViewModel.signUp(
-                                filledUser = userViewModel.user.value,
+                                user = user,
                                 onFailure = {
                                     Toast.makeText(
                                         this@MainActivity,
@@ -99,14 +111,38 @@ class MainActivity : ComponentActivity() {
                         }
                     )
                 }
-                composable(route = Screen.HOME.name) {
-                    HomeScreen(
+                composable(route = Screen.LOGIN.name) {
+                    LoginScreen(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(16.dp),
-                        user = userViewModel.user.value,
-                        onEnergyConsumptionClick = { navController.navigate(Screen.ENERGY_CONSUMPTION.name) }
+                        onLogin = { user: LoginRequest ->
+                            userViewModel.login(
+                                user = user,
+                                onFailure = {
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "Login failed",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                },
+                                onSuccess = {
+                                    navController.navigate(Screen.HOME.name)
+                                }
+                            )
+                        }
                     )
+                }
+                composable(route = Screen.HOME.name) {
+                    userViewModel.currentUser.value?.let { user ->
+                        HomeScreen(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                            user = user,
+                            onEnergyConsumptionClick = { navController.navigate(Screen.ENERGY_CONSUMPTION.name) }
+                        )
+                    }
                 }
                 composable(route = Screen.ENERGY_CONSUMPTION.name) {
                     EnergyConsumptionScreen(
