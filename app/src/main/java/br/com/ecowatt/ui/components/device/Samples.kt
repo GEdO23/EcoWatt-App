@@ -17,11 +17,9 @@ internal object Samples {
     @JvmStatic
     @Composable
     internal fun ConsumptionLevelIconSample(
-        modifier: Modifier = Modifier,
         device: Device
     ) {
         Row(
-            modifier = modifier,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -34,11 +32,9 @@ internal object Samples {
     @JvmStatic
     @Composable
     internal fun ConsumptionReportIconSample(
-        modifier: Modifier = Modifier,
         device: Device
     ) {
         Row(
-            modifier = modifier,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

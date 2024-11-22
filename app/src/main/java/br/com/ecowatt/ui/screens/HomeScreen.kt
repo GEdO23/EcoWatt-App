@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -37,7 +38,7 @@ internal fun HomeScreen(
 
         CustomButton(
             modifier = Modifier.fillMaxWidth(),
-            text = "Energy Consumption",
+            text = stringResource(R.string.btn_device_list_text),
             onClick = onEnergyConsumptionClick
         )
     }
@@ -49,14 +50,14 @@ private fun WelcomeUser(userName: String) {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            text = "Hi, $userName",
+            text = stringResource(R.string.greetings, userName),
             color = Gray800,
             fontSize = 32.sp,
             fontWeight = FontWeight.SemiBold
         )
 
         Text(
-            text = "Welcome back!",
+            text = stringResource(R.string.welcome_back),
             color = Gray600,
             fontSize = 24.sp
         )
@@ -67,7 +68,7 @@ private fun WelcomeUser(userName: String) {
 private fun AppIcon(size: Dp = 32.dp) {
     Image(
         painter = painterResource(R.drawable.ic_ecowatt),
-        contentDescription = "",
+        contentDescription = stringResource(R.string.ic_description_app_icon),
         modifier = Modifier
             .size(size)
             .background(

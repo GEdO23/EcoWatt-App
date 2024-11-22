@@ -8,12 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.ecowatt.R
 import br.com.ecowatt.dto.auth.LoginRequest
 import br.com.ecowatt.ui.components.CustomButton
 
@@ -33,7 +35,7 @@ internal fun LoginScreen(
             modifier = Modifier.fillMaxWidth(),
             value = email.value,
             onValueChange = { email.value = it },
-            label = { Text("Email") },
+            label = { Text(stringResource(R.string.form_label_user_email)) },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.None,
                 keyboardType = KeyboardType.Email,
@@ -45,7 +47,7 @@ internal fun LoginScreen(
             modifier = Modifier.fillMaxWidth(),
             value = password.value,
             onValueChange = { password.value = it },
-            label = { Text("Password") },
+            label = { Text(stringResource(R.string.form_label_user_password)) },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.None,
                 keyboardType = KeyboardType.Password,
@@ -58,7 +60,7 @@ internal fun LoginScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
-            text = "Login",
+            text = stringResource(R.string.btn_login_text),
             onClick = {
                 val loginRequest = LoginRequest(
                     email = email.value,

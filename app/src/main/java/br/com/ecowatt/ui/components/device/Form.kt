@@ -10,9 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.ecowatt.R
 import br.com.ecowatt.models.device.Device
 import br.com.ecowatt.models.device.emptyDevice
 import java.math.BigDecimal
@@ -36,7 +38,7 @@ fun DeviceForm(
             value = device.value.name,
             onValueChange = { device.value = device.value.copy(name = it) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            label = { Text("Name") }
+            label = { Text(stringResource(R.string.form_label_device_name)) }
         )
 
         OutlinedTextField(
@@ -44,7 +46,7 @@ fun DeviceForm(
             value = device.value.type,
             onValueChange = { device.value = device.value.copy(type = it) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            label = { Text("Type") }
+            label = { Text(stringResource(R.string.form_label_device_type)) }
         )
 
         OutlinedTextField(
@@ -52,7 +54,7 @@ fun DeviceForm(
             value = device.value.location,
             onValueChange = { device.value = device.value.copy(location = it) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            label = { Text("Location") }
+            label = { Text(stringResource(R.string.form_label_device_location)) }
         )
 
         OutlinedTextField(
@@ -63,8 +65,8 @@ fun DeviceForm(
                 device.value = device.value.copy(consumptionLimit = consumptionLimit)
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            label = { Text("Maximum energy level") },
-            suffix = { Text("watts") }
+            label = { Text(stringResource(R.string.form_label_device_consumption_limit)) },
+            suffix = { Text(stringResource(R.string.energy_unit)) }
         )
     }
 }
