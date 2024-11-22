@@ -11,7 +11,7 @@ import br.com.ecowatt.dto.auth.LoginRequest
 import br.com.ecowatt.dto.auth.LoginResponse
 import br.com.ecowatt.dto.auth.SignupRequest
 import br.com.ecowatt.dto.auth.SignupResponse
-import br.com.ecowatt.models.User
+import br.com.ecowatt.models.user.User
 import br.com.ecowatt.repository.AuthRepository
 import kotlinx.coroutines.launch
 

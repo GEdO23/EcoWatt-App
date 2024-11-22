@@ -1,4 +1,4 @@
-package br.com.ecowatt.ui.components.consumption
+package br.com.ecowatt.ui.components.device
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +22,7 @@ import br.com.ecowatt.ui.theme.Gray800
  * Composable function that displays an alert for an empty consumption list.
  *
  * @param modifier The modifier to be applied to this component
- * @sample br.com.ecowatt.samples.components.DeviceComponentSamples.EmptyDeviceListAlert
+ * @sample br.com.ecowatt.ui.components.samples.DeviceComponentSamples.EmptyDeviceListAlert
  */
 @Composable
 fun EmptyDeviceListAlert(modifier: Modifier = Modifier) {

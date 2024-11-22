@@ -1,4 +1,4 @@
-package br.com.ecowatt.ui.screens.user
+package br.com.ecowatt.ui.screens.auth
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
@@ -34,7 +34,7 @@ fun WelcomeScreen(
             )
 
             Text(
-                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                text = "Your energy consumption monitoring app.",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Normal,
                 color = Gray600

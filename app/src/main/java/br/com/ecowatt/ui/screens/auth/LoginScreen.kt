@@ -1,4 +1,4 @@
-package br.com.ecowatt.ui.screens.user
+package br.com.ecowatt.ui.screens.auth
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions

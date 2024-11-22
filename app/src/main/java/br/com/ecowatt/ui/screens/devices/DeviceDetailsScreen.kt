@@ -1,4 +1,4 @@
-package br.com.ecowatt.ui.screens
+package br.com.ecowatt.ui.screens.devices
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -12,11 +12,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.ecowatt.R
-import br.com.ecowatt.models.Device
-import br.com.ecowatt.ui.components.consumption.ConsumptionLimitInfo
-import br.com.ecowatt.ui.components.consumption.ConsumptionReportsInfo
-import br.com.ecowatt.ui.components.consumption.EnergyConsumptionInfo
+import br.com.ecowatt.models.device.Device
+import br.com.ecowatt.models.device.DeviceSampleData
+import br.com.ecowatt.ui.components.device.ConsumptionLimitInfo
+import br.com.ecowatt.ui.components.device.ConsumptionReportsInfo
 import br.com.ecowatt.ui.components.device.DeviceHeader
+import br.com.ecowatt.ui.components.device.EnergyConsumptionInfo
 import br.com.ecowatt.ui.theme.Azure500
 import br.com.ecowatt.ui.theme.Neutral1000
 
@@ -79,8 +80,7 @@ private fun DeviceDetailsScreenPreview() {
         modifier = Modifier
             .fillMaxSize()
             .statusBarsPadding(),
-        device = br.com.ecowatt.sampledata.DeviceSampleData.lowConsumptionLevelDevice
-            .copy(name = "um device de teste atualizado"),
+        device = DeviceSampleData.lowConsumptionLevelDevice,
         onClickEditDevice = {}
     )
 }

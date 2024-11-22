@@ -1,7 +1,6 @@
-package br.com.ecowatt.sampledata
+package br.com.ecowatt.models.device
 
 import br.com.ecowatt.models.Consumption
-import br.com.ecowatt.models.Device
 import java.math.BigDecimal
 import java.time.LocalDateTime
 

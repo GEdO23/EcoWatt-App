@@ -1,6 +1,6 @@
 package br.com.ecowatt.dto.auth
 
-import br.com.ecowatt.models.User
+import br.com.ecowatt.models.user.User
 
 /**
  * Data class representing a sign-up request.
