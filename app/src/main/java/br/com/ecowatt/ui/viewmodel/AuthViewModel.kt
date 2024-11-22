@@ -12,15 +12,32 @@ import br.com.ecowatt.dto.auth.LoginResponse
 import br.com.ecowatt.dto.auth.SignupRequest
 import br.com.ecowatt.dto.auth.SignupResponse
 import br.com.ecowatt.models.User
-import br.com.ecowatt.repository.UserRepository
+import br.com.ecowatt.repository.AuthRepository
 import kotlinx.coroutines.launch
 
-class UserViewModel : ViewModel() {
-    private val repo = UserRepository()
+/**
+ * ViewModel for handling user authentication.
+ */
+class AuthViewModel : ViewModel() {
+    private val repo = AuthRepository()
     private val mainHandler = Handler(Looper.getMainLooper())
 
+    /**
+     * The current authenticated user.
+     * Might be null.
+     */
     val currentUser: MutableState<User?> = mutableStateOf(null)
 
+    /**
+     * Signs up a new user.
+     *
+     * @param user The sign-up request data.
+     * @param onSuccess Callback function to handle successful sign-up.
+     * @param onFailure Callback function to handle sign-up failure.
+     * @see AuthRepository
+     * @see SignupRequest
+     * @see SignupResponse
+     */
     fun signUp(
         user: SignupRequest,
         onSuccess: () -> Unit,
@@ -41,6 +58,16 @@ class UserViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Logs in an existing user.
+     *
+     * @param user The login request data.
+     * @param onSuccess Callback function to handle successful login.
+     * @param onFailure Callback function to handle login failure.
+     * @see AuthRepository
+     * @see LoginRequest
+     * @see LoginResponse
+     */
     fun login(
         user: LoginRequest,
         onSuccess: () -> Unit,

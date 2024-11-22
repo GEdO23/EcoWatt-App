@@ -31,13 +31,13 @@ import br.com.ecowatt.ui.screens.user.LoginScreen
 import br.com.ecowatt.ui.screens.user.SignupScreen
 import br.com.ecowatt.ui.screens.user.WelcomeScreen
 import br.com.ecowatt.ui.theme.EcoWattTheme
+import br.com.ecowatt.ui.viewmodel.AuthViewModel
 import br.com.ecowatt.ui.viewmodel.DeviceViewModel
-import br.com.ecowatt.ui.viewmodel.UserViewModel
 
 class MainActivity : ComponentActivity() {
 
     private val deviceViewModel = viewModels<DeviceViewModel>()
-    private val userViewModel = viewModels<UserViewModel>()
+    private val authViewModel = viewModels<AuthViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
             EcoWattTheme {
                 EcoWattApp(
                     deviceViewModel = deviceViewModel.value,
-                    userViewModel = userViewModel.value
+                    auth = authViewModel.value
                 )
             }
         }
@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
     fun EcoWattApp(
         navController: NavHostController = rememberNavController(),
         deviceViewModel: DeviceViewModel,
-        userViewModel: UserViewModel
+        auth: AuthViewModel
     ) {
         val backStackEntry = navController.currentBackStackEntryAsState()
         val currentScreen =
@@ -95,7 +95,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(16.dp),
                         onSignup = { user: SignupRequest ->
-                            userViewModel.signUp(
+                            auth.signUp(
                                 user = user,
                                 onFailure = {
                                     Toast.makeText(
@@ -117,7 +117,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(16.dp),
                         onLogin = { user: LoginRequest ->
-                            userViewModel.login(
+                            auth.login(
                                 user = user,
                                 onFailure = {
                                     Toast.makeText(
@@ -134,7 +134,7 @@ class MainActivity : ComponentActivity() {
                     )
                 }
                 composable(route = Screen.HOME.name) {
-                    userViewModel.currentUser.value?.let { user ->
+                    auth.currentUser.value?.let { user ->
                         HomeScreen(
                             modifier = Modifier
                                 .fillMaxSize()
