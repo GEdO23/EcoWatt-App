@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -43,7 +44,7 @@ fun EmptyDeviceListAlert(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Empty list",
+                text = stringResource(R.string.empty_device_list_alert_title),
                 textAlign = TextAlign.Center,
                 color = Gray800,
                 fontSize = 32.sp,
@@ -51,7 +52,7 @@ fun EmptyDeviceListAlert(modifier: Modifier = Modifier) {
             )
 
             Text(
-                text = "Get started by adding a \nnew device to the list",
+                text = stringResource(R.string.empty_device_list_alert_subtitle),
                 textAlign = TextAlign.Center,
                 color = Gray800,
                 fontSize = 18.sp,

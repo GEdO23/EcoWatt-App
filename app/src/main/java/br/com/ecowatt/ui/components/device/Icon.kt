@@ -2,6 +2,7 @@ package br.com.ecowatt.ui.components.device
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.ecowatt.R
 import br.com.ecowatt.ui.components.CustomIcon
@@ -27,7 +28,7 @@ internal fun ConsumptionLevelIcon(
         size = iconSize,
         color = if (isConsumptionHigh) Red400 else Azure500,
         drawable = R.drawable.ic_energy,
-        description = ""
+        description = stringResource(R.string.ic_description_consumption_level)
     )
 }
 
@@ -49,7 +50,7 @@ internal fun ConsumptionReportIcon(
         size = iconSize,
         color = if (hasUnresolvedAlerts) Red400 else Azure500,
         drawable = R.drawable.ic_priority_high,
-        description = ""
+        description = stringResource(R.string.ic_description_consumption_report)
     )
 }
 

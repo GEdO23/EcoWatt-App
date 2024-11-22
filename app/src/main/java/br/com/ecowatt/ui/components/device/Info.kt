@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -51,11 +52,15 @@ internal fun EnergyConsumptionInfo(
         CustomIcon(
             color = contentColor,
             drawable = R.drawable.ic_energy,
-            description = ""
+            description = stringResource(R.string.ic_description_consumption_level)
         )
 
         Text(
-            text = "${device.getCurrentConsumptionLevel()} watts/minute",
+            text = stringResource(
+                R.string.energy_consumption_per_minute,
+                device.getCurrentConsumptionLevel(),
+                stringResource(R.string.energy_unit)
+            ),
             color = contentColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
@@ -93,11 +98,14 @@ internal fun ConsumptionReportsInfo(
         CustomIcon(
             color = contentColor,
             drawable = R.drawable.ic_priority_high,
-            description = ""
+            description = stringResource(R.string.ic_description_consumption_report)
         )
 
         Text(
-            text = "${device.getNumberOfReports()} consumption reports",
+            text = stringResource(
+                R.string.device_info_consumption_reports_text,
+                device.getNumberOfReports()
+            ),
             color = contentColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
@@ -132,11 +140,15 @@ internal fun ConsumptionLimitInfo(
         CustomIcon(
             color = contentColor,
             drawable = R.drawable.ic_energy,
-            description = ""
+            description = stringResource(R.string.ic_description_consumption_level)
         )
 
         Text(
-            text = "Consumption limit: ${device.consumptionLimit} watts",
+            text = stringResource(
+                R.string.consumption_limit,
+                device.consumptionLimit,
+                stringResource(R.string.energy_unit)
+            ),
             color = contentColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,

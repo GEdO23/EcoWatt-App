@@ -5,10 +5,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.ecowatt.R
 import br.com.ecowatt.ui.components.CustomButton
 import br.com.ecowatt.ui.theme.Gray600
 import br.com.ecowatt.ui.theme.Gray800
@@ -27,14 +29,14 @@ internal fun WelcomeScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "EcoWatt",
+                text = stringResource(R.string.app_name),
                 fontSize = 48.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Gray800
             )
 
             Text(
-                text = "Your energy consumption monitoring app.",
+                text = stringResource(R.string.app_description),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Normal,
                 color = Gray600
@@ -46,7 +48,7 @@ internal fun WelcomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
-                text = "Sign up",
+                text = stringResource(R.string.btn_signup_text),
                 onClick = onSignup
             )
 
@@ -54,7 +56,7 @@ internal fun WelcomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
-                text = "Login",
+                text = stringResource(R.string.btn_login_text),
                 onClick = onLogin
             )
         }

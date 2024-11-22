@@ -102,7 +102,7 @@ class MainActivity : ComponentActivity() {
                                     onFailure = {
                                         Toast.makeText(
                                             this@MainActivity,
-                                            "Signup failed",
+                                            getString(R.string.toast_message_signup_failed),
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     },
@@ -129,7 +129,7 @@ class MainActivity : ComponentActivity() {
                                     onFailure = {
                                         Toast.makeText(
                                             this@MainActivity,
-                                            "Login failed",
+                                            getString(R.string.toast_message_login_failed),
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     },
@@ -174,7 +174,7 @@ class MainActivity : ComponentActivity() {
                                 deviceViewModel.deleteDevice(deviceId)
                                 Toast.makeText(
                                     this@MainActivity,
-                                    "Device deleted!",
+                                    getString(R.string.toast_message_device_deleted),
                                     Toast.LENGTH_LONG
                                 ).show()
                             },
@@ -190,7 +190,7 @@ class MainActivity : ComponentActivity() {
                                 navController.popBackStack()
                                 Toast.makeText(
                                     this@MainActivity,
-                                    "Device saved!",
+                                    getString(R.string.toast_message_device_saved),
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
@@ -218,7 +218,7 @@ class MainActivity : ComponentActivity() {
                                 navController.popBackStack()
                                 Toast.makeText(
                                     this@MainActivity,
-                                    "Device updated!",
+                                    getString(R.string.toast_message_device_updated),
                                     Toast.LENGTH_LONG
                                 ).show()
                             }

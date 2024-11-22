@@ -5,6 +5,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.ecowatt.R
 import br.com.ecowatt.models.device.Device
@@ -39,13 +40,19 @@ internal fun EnergyConsumptionListItem(
             Text(device.name)
         },
         supportingContent = {
-            Text("${device.getCurrentConsumptionLevel()} watts/minute")
+            Text(
+                stringResource(
+                    R.string.energy_consumption_per_minute,
+                    device.getCurrentConsumptionLevel(),
+                    stringResource(R.string.energy_unit)
+                )
+            )
         },
         trailingContent = {
             IconButton(onClick = onDeleteDevice) {
                 Icon(
                     painter = painterResource(R.drawable.ic_delete),
-                    contentDescription = "Delete device"
+                    contentDescription = stringResource(R.string.ic_description_delete_device)
                 )
             }
         }
