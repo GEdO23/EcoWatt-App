@@ -1,5 +1,7 @@
 package br.com.ecowatt.ui.viewmodel
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -12,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class UserViewModel : ViewModel() {
     private val repo = UserRepository()
+    private val mainHandler = Handler(Looper.getMainLooper())
 
     val user: MutableState<User> = mutableStateOf(emptyUser())
 
@@ -25,11 +28,11 @@ class UserViewModel : ViewModel() {
                 user = filledUser,
                 onRequestFailure = {
                     Log.e("ECOWATT", "AUTH ERROR: ${it.message}")
-                    onFailure()
+                    mainHandler.post { onFailure() }
                 },
                 onRequestSuccess = {
                     user.value = filledUser
-                    onSuccess()
+                    mainHandler.post { onSuccess() }
                 }
             )
         }
