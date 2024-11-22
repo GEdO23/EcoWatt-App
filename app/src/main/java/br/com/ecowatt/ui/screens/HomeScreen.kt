@@ -32,7 +32,7 @@ fun HomeScreen(
     ) {
         AppIcon(size = 48.dp)
 
-        WelcomeUser(userName = user.name)
+        WelcomeUser(userName = user.displayName)
 
         Button(
             modifier = Modifier.fillMaxWidth(),
